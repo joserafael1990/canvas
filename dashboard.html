@@ -2633,12 +2633,12 @@
             }
         };
 
-        // Unified chart drawing function
+                // Unified chart drawing function
         function drawTendencialChart(viewType = null) {
-            drawUnifiedChart('tendencial');
+            drawUnifiedChart('tendencial', viewType);
         }
 
-        function drawUnifiedChart(chartKey) {
+        function drawUnifiedChart(chartKey, viewType = null) {
             const config = CHART_CONFIGS[chartKey];
             if (!config) {
                 console.error('Chart configuration not found for:', chartKey);
@@ -2651,23 +2651,28 @@
                 return;
             }
 
-            // Update legend for the first chart only
-            if (chartKey === 'tendencial') {
-            updateLegend([
-                { color: '#FF9800', label: 'Compliance' },
-                { color: '#8B4513', label: 'Target' }
-            ]);
-            }
-            
             const ctx = canvas.getContext('2d');
             
             // Clear and reset canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.resetTransform();
             ctx.save();
-            
-            // Always draw as line chart for Tendencial Anual charts
-            drawUnifiedLineChart(ctx, canvas, config);
+
+            // Determine chart type based on viewType
+            if (viewType === 'categoria') {
+                // Draw bar chart for categoria view
+                drawCategoryBarChart(ctx, canvas, config, chartKey);
+            } else {
+                // Update legend for line charts
+                if (chartKey === 'tendencial') {
+                    updateLegend([
+                        { color: '#FF9800', label: 'Compliance' },
+                        { color: '#8B4513', label: 'Target' }
+                    ]);
+                }
+                // Draw default line chart for monthly progression
+                drawUnifiedLineChart(ctx, canvas, config);
+            }
         }
 
         function drawUnifiedLineChart(ctx, canvas, config) {
@@ -2777,6 +2782,168 @@
                 const x = margin.left + i * xScale;
                 ctx.fillText(labels[i], x, height - margin.bottom + 20);
             }
+        }
+
+        function drawCategoryBarChart(ctx, canvas, config, chartKey) {
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Category data for different chart types
+            const categoryData = getCategoryData(chartKey);
+            
+            // Chart dimensions
+            const margin = { top: 50, right: 40, bottom: 50, left: 180 };
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // Colors for categories (elegant professional palette)
+            const colors = [
+                '#0078d4', // Microsoft Blue
+                '#00bcf2', // Cyan
+                '#40e0d0', // Turquoise  
+                '#32cd32', // Lime Green
+                '#ffd700', // Gold
+                '#ff8c00', // Dark Orange
+                '#ff6347', // Tomato
+                '#da70d6', // Orchid
+                '#87ceeb', // Sky Blue
+                '#98fb98'  // Pale Green
+            ];
+            
+            // Sort categories by percentage (descending)
+            const sortedData = [...categoryData].sort((a, b) => b.percentage - a.percentage);
+            
+            // Calculate scales
+            const maxPercentage = Math.max(...sortedData.map(item => item.percentage));
+            const barHeight = chartHeight / sortedData.length * 0.7; // 70% of available space per bar
+            const barSpacing = chartHeight / sortedData.length * 0.3; // 30% for spacing
+            
+            // Draw title
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Distribución por Categoría', width / 2, 25);
+            
+            // Draw bars
+            sortedData.forEach((item, index) => {
+                const y = margin.top + index * (barHeight + barSpacing);
+                const barWidth = (item.percentage / maxPercentage) * chartWidth * 0.9; // 90% of available width
+                const color = colors[index % colors.length];
+                
+                // Draw bar
+                ctx.fillStyle = color;
+                ctx.fillRect(margin.left, y, barWidth, barHeight);
+                
+                // Draw bar border
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(margin.left, y, barWidth, barHeight);
+                
+                // Draw category name (left aligned)
+                ctx.fillStyle = '#333';
+                ctx.font = '13px Arial';
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(item.name, margin.left - 10, y + barHeight / 2);
+                
+                // Draw percentage inside bar (if bar is wide enough) or at the end
+                ctx.fillStyle = barWidth > 80 ? '#ffffff' : '#333';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = barWidth > 80 ? 'center' : 'left';
+                
+                const textX = barWidth > 80 ? margin.left + barWidth / 2 : margin.left + barWidth + 5;
+                ctx.fillText(item.percentage.toFixed(1) + '%', textX, y + barHeight / 2);
+                
+                // Draw value on bar end for better visibility
+                if (barWidth > 100) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.textAlign = 'right';
+                    ctx.fillText(item.percentage.toFixed(1) + '%', margin.left + barWidth - 10, y + barHeight / 2);
+                }
+            });
+            
+            // Draw Y-axis line
+            ctx.strokeStyle = '#ccc';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, margin.top + chartHeight);
+            ctx.stroke();
+            
+            // Draw X-axis line  
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top + chartHeight);
+            ctx.lineTo(margin.left + chartWidth, margin.top + chartHeight);
+            ctx.stroke();
+            
+            // Draw X-axis scale labels
+            ctx.fillStyle = '#666';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            
+            const scaleSteps = 5;
+            for (let i = 0; i <= scaleSteps; i++) {
+                const percentage = (maxPercentage / scaleSteps) * i;
+                const x = margin.left + (percentage / maxPercentage) * chartWidth * 0.9;
+                
+                // Draw scale line
+                ctx.strokeStyle = '#e5e5e5';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(x, margin.top);
+                ctx.lineTo(x, margin.top + chartHeight);
+                ctx.stroke();
+                
+                // Draw scale label
+                ctx.fillStyle = '#666';
+                ctx.fillText(percentage.toFixed(0) + '%', x, margin.top + chartHeight + 5);
+            }
+        }
+
+        function getCategoryData(chartKey) {
+            // Different category data based on chart type
+            const categoryDataSets = {
+                tendencial: [
+                    { name: 'Hair Care', value: 28.5, percentage: 28.5 },
+                    { name: 'Personal Care', value: 22.3, percentage: 22.3 },
+                    { name: 'Foods', value: 18.7, percentage: 18.7 },
+                    { name: 'Home Care', value: 15.2, percentage: 15.2 },
+                    { name: 'Ice Cream', value: 8.9, percentage: 8.9 },
+                    { name: 'Tea', value: 6.4, percentage: 6.4 }
+                ],
+                posicion: [
+                    { name: 'Shampoo', value: 32.1, percentage: 32.1 },
+                    { name: 'Deodorants', value: 24.8, percentage: 24.8 },
+                    { name: 'Soaps', value: 18.9, percentage: 18.9 },
+                    { name: 'Conditioners', value: 12.7, percentage: 12.7 },
+                    { name: 'Styling', value: 11.5, percentage: 11.5 }
+                ],
+                adyacencia: [
+                    { name: 'Caldos', value: 35.2, percentage: 35.2 },
+                    { name: 'Mayonesa', value: 26.8, percentage: 26.8 },
+                    { name: 'Salsas', value: 19.4, percentage: 19.4 },
+                    { name: 'Aderezos', value: 18.6, percentage: 18.6 }
+                ],
+                cajillas: [
+                    { name: 'Detergentes', value: 42.3, percentage: 42.3 },
+                    { name: 'Suavizantes', value: 28.7, percentage: 28.7 },
+                    { name: 'Limpiadores', value: 29.0, percentage: 29.0 }
+                ],
+                adyacenciaBloque: [
+                    { name: 'Magnum', value: 38.5, percentage: 38.5 },
+                    { name: 'Cornetto', value: 31.2, percentage: 31.2 },
+                    { name: 'Ben & Jerry\'s', value: 18.8, percentage: 18.8 },
+                    { name: 'Carte D\'Or', value: 11.5, percentage: 11.5 }
+                ],
+                presencia: [
+                    { name: 'Lipton', value: 45.6, percentage: 45.6 },
+                    { name: 'PG Tips', value: 28.9, percentage: 28.9 },
+                    { name: 'Knorr Tea', value: 25.5, percentage: 25.5 }
+                ]
+            };
+            
+            return categoryDataSets[chartKey] || categoryDataSets.tendencial;
         }
         
         function getChartTypeForView(viewType) {
@@ -3556,7 +3723,7 @@
         }
 
         function drawPosicionChart(viewType = null) {
-            drawUnifiedChart('posicion');
+            drawUnifiedChart('posicion', viewType);
         }
         
         function drawPosicionLineChart(ctx, canvas, compliance, target, months) {
@@ -3666,8 +3833,8 @@
             }
         }
 
-        function drawAdyacenciaChart(viewType = null) {
-            drawUnifiedChart('adyacencia');
+                function drawAdyacenciaChart(viewType = null) {
+            drawUnifiedChart('adyacencia', viewType);
         }
         
         function drawAdyacenciaLineChart(ctx, canvas, compliance, target, months) {
@@ -3778,7 +3945,7 @@
         }
 
         function drawCajillasChart(viewType = null) {
-            drawUnifiedChart('cajillas');
+            drawUnifiedChart('cajillas', viewType);
         }
         
         function drawCajillasLineChart(ctx, canvas, compliance, target, months) {
@@ -3889,7 +4056,7 @@
         }
 
         function drawAdyacenciaBloqueChart(viewType = null) {
-            drawUnifiedChart('adyacenciaBloque');
+            drawUnifiedChart('adyacenciaBloque', viewType);
         }
         
         function drawAdyacenciaBloqueLineChart(ctx, canvas, compliance, target, months) {
@@ -4000,7 +4167,7 @@
         }
 
         function drawPresenciaChart(viewType = null) {
-            drawUnifiedChart('presencia');
+            drawUnifiedChart('presencia', viewType);
         }
         
         function drawPresenciaLineChart(ctx, canvas, compliance, target, months) {
