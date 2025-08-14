@@ -1218,21 +1218,6 @@
     <div class="dashboard-content">
         <!-- Dashboard Content -->
         <div id="dashboard-content" class="content-section active">
-            <!-- View Selector -->
-            <div class="view-selector">
-                <label class="view-label">Vista de Análisis:</label>
-                <select class="view-dropdown" id="viewSelector" onchange="changeView()">
-                    <option value="bu" selected>BU</option>
-                    <option value="categoria">Categoría</option>
-                    <option value="cadena">Cadena</option>
-                    <option value="formato">Formato</option>
-                    <option value="divisional">Divisional</option>
-                    <option value="asesor">Asesor</option>
-                    <option value="tienda">Tienda</option>
-                    <option value="num-tienda">Num. Tienda</option>
-                    <option value="proyecto">Proyecto</option>
-                </select>
-            </div>
 
             <!-- Bloque Section -->
             <div class="bloque-section">
@@ -1255,7 +1240,8 @@
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart1ViewSelector" data-chart="chart1" onchange="updateIndividualChart(this)">
-                                <option value="bu" selected>BU</option>
+                                <option value="" disabled selected>Seleccionar vista...</option>
+                                <option value="bu">BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -1462,7 +1448,8 @@
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart2ViewSelector" data-chart="chart2" onchange="updateIndividualChart(this)">
-                                <option value="bu" selected>BU</option>
+                                <option value="" disabled selected>Seleccionar vista...</option>
+                                <option value="bu">BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -1669,7 +1656,8 @@
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart3ViewSelector" data-chart="chart3" onchange="updateIndividualChart(this)">
-                                <option value="bu" selected>BU</option>
+                                <option value="" disabled selected>Seleccionar vista...</option>
+                                <option value="bu">BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -1806,7 +1794,8 @@
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart4ViewSelector" data-chart="chart4" onchange="updateIndividualChart(this)">
-                                <option value="bu" selected>BU</option>
+                                <option value="" disabled selected>Seleccionar vista...</option>
+                                <option value="bu">BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -1943,7 +1932,8 @@
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart5ViewSelector" data-chart="chart5" onchange="updateIndividualChart(this)">
-                                <option value="bu" selected>BU</option>
+                                <option value="" disabled selected>Seleccionar vista...</option>
+                                <option value="bu">BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -2081,10 +2071,10 @@
                             <label class="filter-label">Vista de Análisis</label>
                             <div class="filter-select">
                                 <button class="dropdown-button" data-filter="chart6-view" id="chart6ViewSelector" onclick="toggleDropdown(this)">
-                                    BU
+                                    Seleccionar vista...
                                 </button>
                                 <div class="dropdown-options">
-                                    <div class="dropdown-option selected" data-value="bu" onclick="selectOption(this)">BU</div>
+                                    <div class="dropdown-option" data-value="bu" onclick="selectOption(this)">BU</div>
                                     <div class="dropdown-option" data-value="categoria" onclick="selectOption(this)">Categoría</div>
                                     <div class="dropdown-option" data-value="cadena" onclick="selectOption(this)">Cadena</div>
                                     <div class="dropdown-option" data-value="formato" onclick="selectOption(this)">Formato</div>
