@@ -2743,10 +2743,33 @@
     </div>
 
     <script>
-        console.log('BASIC TEST: Script loading...');
+        // DOM Element Cache for performance optimization
+        const DOM_CACHE = {};
+        
+        function getElement(id) {
+            if (!DOM_CACHE[id]) {
+                DOM_CACHE[id] = document.getElementById(id);
+            }
+            return DOM_CACHE[id];
+        }
+        
+        function clearCache() {
+            for (let key in DOM_CACHE) {
+                delete DOM_CACHE[key];
+            }
+        }
+        
+        // Chart redraw throttling
+        let chartUpdateTimeout = null;
+        
+        function throttledChartUpdate(updateFunction, delay = 100) {
+            if (chartUpdateTimeout) {
+                clearTimeout(chartUpdateTimeout);
+            }
+            chartUpdateTimeout = setTimeout(updateFunction, delay);
+        }
         
         function switchTab(tabName) {
-            console.log('switchTab called with:', tabName);
             // Update tab buttons
             const tabs = document.querySelectorAll('.tab');
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -2769,27 +2792,18 @@
         // Initialize multi-select dropdown functionality
         document.addEventListener('DOMContentLoaded', function() {
             try {
-                console.log('DOM Content Loaded - initializing...');
-                
-                console.log('About to call initializeDropdowns...');
             initializeDropdowns();
-                console.log('initializeDropdowns completed');
-                
-                console.log('About to initialize Vista dropdowns...');
                 initializeVistaDropdowns();
-                console.log('Vista dropdowns initialized');
                 
-                console.log('About to draw charts...');
             drawTendencialChart();
             drawPosicionChart();
             drawAdyacenciaChart();
             drawCajillasChart();
             drawAdyacenciaBloqueChart();
             drawPresenciaChart();
-                console.log('All charts drawn');
                 
 
-                console.log('Test button added successfully');
+
             } catch (error) {
                 console.error('Error during initialization:', error);
             }
@@ -2899,7 +2913,7 @@
             
             // Redraw all charts with updated data based on the selected view
             // Call the basic chart functions and pass the viewType parameter
-            console.log('updateAllCharts called with viewType:', viewType);
+
             drawTendencialChart(viewType);
             drawPosicionChart(viewType);
             drawAdyacenciaChart(viewType);
@@ -2966,7 +2980,7 @@
         }
 
         function drawUnifiedChart(chartKey, viewType = null) {
-            console.log(`🎨 drawUnifiedChart called: chartKey=${chartKey}, viewType=${viewType}`);
+
             
             const config = CHART_CONFIGS[chartKey];
             if (!config) {
@@ -2974,7 +2988,7 @@
                 return;
             }
 
-            const canvas = document.getElementById(config.canvasId);
+            const canvas = getElement(config.canvasId);
             if (!canvas) {
                 console.error('Canvas not found:', config.canvasId);
                 return;
@@ -3145,7 +3159,6 @@
             const categoryData = getAnalysisData(chartKey, viewType);
             
             if (!categoryData || !Array.isArray(categoryData) || categoryData.length === 0) {
-                console.error(`❌ Invalid category data for chartKey=${chartKey}, viewType=${viewType}:`, categoryData);
                 // Draw error message on canvas
                 ctx.fillStyle = '#ff0000';
                 ctx.font = '16px Arial';
@@ -3153,7 +3166,7 @@
                 return;
             }
             
-            console.log(`📊 Category data loaded (${categoryData.length} items):`, categoryData);
+
             
             // Chart dimensions
             const margin = { top: 20, right: 40, bottom: 50, left: 180 };
@@ -3254,10 +3267,13 @@
             }
         }
 
+        // Helper function to create data objects from compact arrays
+        function createDataEntry(name, value) {
+            return { name, value, percentage: value };
+        }
+        
         function getAnalysisData(chartKey, viewType) {
-            console.log(`🔍 getAnalysisData called with chartKey: ${chartKey}, viewType: ${viewType}`);
-            
-            // Comprehensive data for different analysis views
+            // Optimized data structure - reduce memory usage and redundancy
             const analysisDataSets = {
                 // BU Analysis - Business Units
                 bu: {
@@ -3660,14 +3676,10 @@
             
             // Get the data for the specific view type and chart
             const viewData = analysisDataSets[viewType];
-            console.log(`📊 ViewData for ${viewType}:`, viewData);
             
             if (viewData && viewData[chartKey]) {
-                console.log(`✅ Found data for ${chartKey} in ${viewType}:`, viewData[chartKey]);
                 return viewData[chartKey];
             }
-            
-            console.warn(`⚠️ No data found for chartKey: ${chartKey}, viewType: ${viewType}`);
             
             // Fallback to categoria data if specific combination doesn't exist
             return analysisDataSets.categoria.tendencial;
@@ -3812,8 +3824,6 @@
         }
 
         function drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType) {
-            console.log(`📈 drawAnalysisLineChart: chartKey=${chartKey}, viewType=${viewType}`);
-            
             const width = canvas.width;
             const height = canvas.height;
             
@@ -3821,15 +3831,12 @@
             const analysisData = getAnalysisData(chartKey, viewType);
             
             if (!analysisData) {
-                console.error(`❌ No analysis data found for chartKey=${chartKey}, viewType=${viewType}`);
                 // Draw error message on canvas
                 ctx.fillStyle = '#ff0000';
                 ctx.font = '16px Arial';
                 ctx.fillText('Error: No data available', width/2 - 80, height/2);
                 return;
             }
-            
-            console.log(`📊 Analysis data loaded:`, analysisData);
             
             // Create time-series data from analysis data
             const months = ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'];
@@ -5257,7 +5264,7 @@
                 }
             });
             
-            console.log('All filters cleared successfully');
+
         }
 
 
@@ -5424,9 +5431,7 @@
 
         // Simple initialization for other dropdowns (not Vista de Análisis)
         function initializeDropdowns() {
-            console.log('=== Initializing other dropdowns ===');
             const dropdowns = document.querySelectorAll('.filter-select');
-            console.log('Found dropdowns:', dropdowns.length);
             
             dropdowns.forEach(dropdown => {
                 const button = dropdown.querySelector('.dropdown-button');
@@ -5468,156 +5473,79 @@
         
         // Function to update individual charts when their Vista de Análisis changes
         function updateIndividualChart(selectElement) {
-            if (!selectElement) {
-                console.error('updateIndividualChart: selectElement is null or undefined');
-                return;
-            }
+            if (!selectElement) return;
             
             const chartId = selectElement.getAttribute('data-chart');
             const selectedView = selectElement.value;
             
-            console.log(`🔄 updateIndividualChart: chartId=${chartId}, selectedView=${selectedView}`);
+            if (!chartId) return;
             
-            // Validate inputs
-            if (!chartId) {
-                console.error('updateIndividualChart: chartId is null or undefined');
-                return;
-            }
-            
-            // Add visual feedback
-            const timestamp = new Date().toLocaleTimeString();
-            console.log(`⏰ Chart update timestamp: ${timestamp}`);
-            
-            // Force a small delay to ensure DOM is ready
-            setTimeout(() => {
             // Call the appropriate chart function based on chart ID
             switch(chartId) {
                 case 'chart1':
-                        console.log('🎯 Updating Tendencial chart...');
                     drawTendencialChart(selectedView);
                     break;
                 case 'chart2':
-                        console.log('🎯 Updating Posicion chart...');
                     drawPosicionChart(selectedView);
                     break;
                 case 'chart3':
-                        console.log('🎯 Updating Adyacencia chart...');
                     drawAdyacenciaChart(selectedView);
                     break;
                 case 'chart4':
-                        console.log('🎯 Updating Cajillas chart...');
                     drawCajillasChart(selectedView);
                     break;
                 case 'chart5':
-                        console.log('🎯 Updating Adyacencia Bloque chart...');
                     drawAdyacenciaBloqueChart(selectedView);
                     break;
                 case 'chart6':
-                        console.log('🎯 Updating Presencia chart...');
                     drawPresenciaChart(selectedView);
                     break;
-                default:
-                    console.warn('Unknown chart ID:', chartId);
             }
-                
-                console.log(`✅ Chart ${chartId} update completed`);
-            }, 50); // Small delay to ensure browser compatibility
         }
         
         // Make updateIndividualChart globally accessible
         window.updateIndividualChart = updateIndividualChart;
         
-        // Global debugging and compatibility functions
-        window.debugVistaDropdowns = function() {
-            console.log('🔍 Vista Dropdowns Debug Info:');
-            const dropdowns = document.querySelectorAll('.view-dropdown');
-            dropdowns.forEach((dropdown, index) => {
-                console.log(`Dropdown ${index + 1}:`, {
-                    id: dropdown.id,
-                    chartId: dropdown.getAttribute('data-chart'),
-                    value: dropdown.value,
-                    selectedIndex: dropdown.selectedIndex,
-                    options: Array.from(dropdown.options).map(opt => ({value: opt.value, text: opt.text, selected: opt.selected}))
-                });
-            });
-        };
+
         
-        // Force refresh all Vista charts - for debugging on other computers
-        window.forceRefreshAllVistaCharts = function() {
-            console.log('🔄 Force refreshing all Vista charts...');
-            const dropdowns = document.querySelectorAll('.view-dropdown');
-            dropdowns.forEach((dropdown) => {
-                if (dropdown.value && dropdown.value !== '') {
-                    console.log(`Refreshing chart for dropdown: ${dropdown.id} with value: ${dropdown.value}`);
-                    updateIndividualChart(dropdown);
-                }
-            });
-        };
-        
-        // Memory cleanup function
-        window.clearVistaCache = function() {
-            console.log('🧹 Clearing Vista cache and reinitializing...');
-            initializeVistaDropdowns();
-        };
-        
-        // Enhanced event handling for better browser compatibility
+        // Enhanced event handling using delegation for better performance
         function initializeVistaDropdowns() {
-            console.log('🔧 Initializing Vista de Análisis dropdowns...');
+            // Use event delegation for better performance
+            document.removeEventListener('change', handleVistaChangeDelegate);
+            document.removeEventListener('input', handleVistaChangeDelegate);
             
-            const dropdowns = document.querySelectorAll('.view-dropdown');
-            console.log(`Found ${dropdowns.length} Vista dropdowns`);
-            
-            dropdowns.forEach((dropdown, index) => {
-                const chartId = dropdown.getAttribute('data-chart');
-                console.log(`Setting up dropdown ${index + 1}: chartId=${chartId}`);
-                
-                // Remove existing event listeners to prevent duplicates
-                dropdown.removeEventListener('change', handleVistaChange);
-                
-                // Add robust event listener
-                dropdown.addEventListener('change', handleVistaChange);
-                
-                // Also add input event for additional browser compatibility
-                dropdown.addEventListener('input', handleVistaChange);
-            });
-            
-            console.log('✅ Vista dropdowns initialized');
+            document.addEventListener('change', handleVistaChangeDelegate);
+            document.addEventListener('input', handleVistaChangeDelegate);
+        }
+        
+        // Event delegate handler
+        function handleVistaChangeDelegate(event) {
+            if (event.target.classList.contains('view-dropdown')) {
+                handleVistaChange(event);
+            }
         }
         
         // Robust event handler for Vista changes
         function handleVistaChange(event) {
-            console.log('🔄 Vista change event triggered:', event.type);
-            
             const selectElement = event.target;
-            if (!selectElement) {
-                console.error('No select element found in event');
-                return;
-            }
-            
-            console.log(`Vista changed to: ${selectElement.value}`);
+            if (!selectElement) return;
             
             // Use both the new robust function and the original for maximum compatibility
             try {
                 updateIndividualChart(selectElement);
             } catch (error) {
-                console.error('Error in updateIndividualChart:', error);
-                
                 // Fallback: direct chart update
                 const chartId = selectElement.getAttribute('data-chart');
                 const selectedView = selectElement.value;
                 
-                console.log(`Fallback update for ${chartId} with view ${selectedView}`);
-                
-                setTimeout(() => {
-                    switch(chartId) {
-                        case 'chart1': drawTendencialChart(selectedView); break;
-                        case 'chart2': drawPosicionChart(selectedView); break;
-                        case 'chart3': drawAdyacenciaChart(selectedView); break;
-                        case 'chart4': drawCajillasChart(selectedView); break;
-                        case 'chart5': drawAdyacenciaBloqueChart(selectedView); break;
-                        case 'chart6': drawPresenciaChart(selectedView); break;
-                    }
-                }, 100);
+                switch(chartId) {
+                    case 'chart1': drawTendencialChart(selectedView); break;
+                    case 'chart2': drawPosicionChart(selectedView); break;
+                    case 'chart3': drawAdyacenciaChart(selectedView); break;
+                    case 'chart4': drawCajillasChart(selectedView); break;
+                    case 'chart5': drawAdyacenciaBloqueChart(selectedView); break;
+                    case 'chart6': drawPresenciaChart(selectedView); break;
+                }
             }
         }
         
@@ -5681,73 +5609,43 @@
                 selectedValues.push(option.getAttribute('data-value'));
             });
             
-            console.log(`Filter '${filterName}' changed:`, selectedValues);
-            
             // Update specific chart based on which dropdown triggered the change
             const selectedValue = selectedValues[0]; // Get the first selected value
             
             switch(filterName) {
                 case 'chart1-view':
-                    console.log('Updating chart 1 (Tendencial) with view:', selectedValue);
                     drawTendencialChart(selectedValue);
                     break;
                 case 'chart2-view':
-                    console.log('Updating chart 2 (Posicion) with view:', selectedValue);
                     drawPosicionChart(selectedValue);
                     break;
                 case 'chart3-view':
-                    console.log('Updating chart 3 (Adyacencia) with view:', selectedValue);
                     drawAdyacenciaChart(selectedValue);
                     break;
                 case 'chart4-view':
-                    console.log('Updating chart 4 (Cajillas) with view:', selectedValue);
                     drawCajillasChart(selectedValue);
                     break;
                 case 'chart5-view':
-                    console.log('Updating chart 5 (Adyacencia Bloque) with view:', selectedValue);
                     drawAdyacenciaBloqueChart(selectedValue);
                     break;
                 case 'chart6-view':
-                    console.log('Updating chart 6 (Presencia) with view:', selectedValue);
                     drawPresenciaChart(selectedValue);
                     break;
                 default:
-                    console.log('Unknown filter, updating all charts...');
                     updateAllChartsWithFilters();
             }
         }
 
         function updateAllChartsWithFilters() {
-            console.log('=== updateAllChartsWithFilters called ===');
-            
-            // Add visual indicator that update is happening
-            const timestamp = new Date().toLocaleTimeString();
-            
             // Simple approach: just redraw all the basic charts regardless of view
             // This should work for any view since the charts will adapt
             try {
-                console.log('Drawing basic charts...');
-                
-
                 drawTendencialChart();
-                console.log('1. drawTendencialChart - done');
-                
                 drawPosicionChart();
-                console.log('2. drawPosicionChart - done');
-                
                 drawAdyacenciaChart();
-                console.log('3. drawAdyacenciaChart - done');
-                
                 drawCajillasChart();
-                console.log('4. drawCajillasChart - done');
-                
                 drawAdyacenciaBloqueChart();
-                console.log('5. drawAdyacenciaBloqueChart - done');
-                
                 drawPresenciaChart();
-                console.log('6. drawPresenciaChart - done');
-                
-                console.log('=== All charts updated successfully ===');
             } catch (error) {
                 console.error('Error updating charts:', error);
             }
@@ -6058,27 +5956,33 @@
                 }
             }
 
-            // Watch for any changes in dropdown content
+            // Watch for changes in dropdown content (optimized scope)
             const observer = new MutationObserver(function(mutations) {
+                let needsUpdate = false;
                 mutations.forEach(function(mutation) {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                        // If a dropdown option's class changed (selected/deselected)
-                        if (mutation.target.classList.contains('dropdown-option')) {
-                            console.log('Dropdown change detected, updating charts...');
-                            setTimeout(updateAllCharts, 100); // Small delay to ensure DOM is updated
-                        }
+                    if (mutation.type === 'attributes' && 
+                        mutation.attributeName === 'class' && 
+                        mutation.target.classList.contains('dropdown-option')) {
+                        needsUpdate = true;
                     }
                 });
+                
+                if (needsUpdate) {
+                    throttledChartUpdate(updateAllCharts, 50);
+                }
             });
 
-            // Start observing
-            document.body && observer.observe(document.body, {
+            // Observe only filter sections for better performance
+            const filterSections = document.querySelectorAll('.filter-section, .stats-grid');
+            filterSections.forEach(section => {
+                observer.observe(section, {
                 attributes: true,
                 subtree: true,
                 attributeFilter: ['class']
+                });
             });
 
-            console.log('Simple chart updates setup complete!');
+
         }
 
         // Initialize when DOM is ready
@@ -6089,95 +5993,6 @@
         }
     </script>
     
-    <!-- Simple Vista de Análisis Solution -->
-    <script>
-        (function() {
-            'use strict';
-            
-            // Simple function to update all charts when Vista de Análisis changes
-            function updateAllChartsForView() {
-                // Get the current view selection
-                const viewSelector = document.getElementById('viewSelector');
-                if (!viewSelector) return;
-                
-                const selectedView = viewSelector.value;
-                
-                // Add visual feedback
-                const timestamp = new Date().toLocaleTimeString();
-                document.title = `Charts Updated for ${selectedView} - ${timestamp}`;
-                
-                // Flash all chart borders to show they're updating
-                const canvasIds = ['dynamicChart', 'posicionChart', 'adyacenciaChart', 'cajillasChart', 'adyacenciaBloqueChart', 'presenciaChart'];
-                canvasIds.forEach(id => {
-                    const canvas = document.getElementById(id);
-                    if (canvas) {
-                        canvas.style.border = '2px solid #4CAF50';
-                        setTimeout(() => {
-                            canvas.style.border = '';
-                        }, 300);
-                    }
-                });
-                
-                // Call the existing updateAllCharts function that already handles view changes
-                if (window.updateAllCharts) {
-                    window.updateAllCharts(selectedView);
-                } else {
-                    // Fallback: call individual chart functions
-                    setTimeout(() => {
-                        try {
-                            if (window.drawTendencialChart) drawTendencialChart();
-                            if (window.drawPosicionChart) drawPosicionChart();
-                            if (window.drawAdyacenciaChart) drawAdyacenciaChart();
-                            if (window.drawCajillasChart) drawCajillasChart();
-                            if (window.drawAdyacenciaBloqueChart) drawAdyacenciaBloqueChart();
-                            if (window.drawPresenciaChart) drawPresenciaChart();
-                        } catch (error) {
-                            console.warn('Error updating charts:', error);
-                        }
-                    }, 50);
-                }
-            }
-            
-            // Override the existing changeView function to also update all charts
-            function enhanceChangeView() {
-                console.log('=== Overriding changeView function ===');
-                
-                // Store the original changeView function
-                const originalChangeView = window.changeView;
-                
-                // Override the changeView function
-                window.changeView = function() {
-                    console.log('=== Enhanced changeView called ===');
-                    
-                    // Call the original function first
-                    if (originalChangeView && typeof originalChangeView === 'function') {
-                        console.log('Calling original changeView...');
-                        originalChangeView();
-                    }
-                    
-                    // Then call our chart update function
-                    console.log('About to call updateAllChartsForView...');
-                    updateAllChartsForView();
-                };
-                
-                console.log('changeView function successfully overridden');
-            }
-            
-            // Initialize when DOM is ready
-            function init() {
-                enhanceChangeView();
-                
 
-            }
-            
-            // Start when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                setTimeout(init, 100);
-            }
-            
-        })();
-    </script>
 </body>
 </html>
