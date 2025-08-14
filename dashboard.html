@@ -13,9 +13,11 @@
 
         body {
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            background-color: #f3f2f1;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             color: #323130;
             line-height: 1.4;
+            margin: 0;
+            overflow-x: hidden;
         }
 
         .header {
@@ -29,9 +31,131 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 24px;
-            background-color: #f8f7f4;
-            border-bottom: 1px solid #edebe9;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #003366 0%, #0066cc 20%, #00a2e8 100%);
+            border-bottom: 3px solid #ff6600;
+            box-shadow: 0 4px 12px rgba(0,51,102,0.2);
+            position: relative;
+        }
+        
+        .powerbi-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6600 0%, #ffcc00 50%, #ff6600 100%);
+        }
+        
+        .unilever-brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .unilever-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            line-height: 1;
+        }
+        
+        .unilever-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .mexico-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ffcc00;
+            letter-spacing: 1px;
+            margin-top: -2px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .report-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            border-left: 3px solid #ffcc00;
+            padding-left: 12px;
+        }
+        
+        /* Enhanced UX Features */
+        .chart-container {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .chart-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 51, 102, 0.15);
+        }
+        
+        .loading-spinner {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff6600;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Professional dropdown enhancements */
+        select, .dropdown-button {
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        select:hover, .dropdown-button:hover {
+            border-color: #ff6600 !important;
+            box-shadow: 0 2px 8px rgba(255, 102, 0, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        /* Mexican market context styling */
+        .mexico-context {
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.05) 0%, rgba(255, 102, 0, 0.05) 100%);
+            border-left: 4px solid #ff6600;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #003366;
+        }
+        
+        .unilever-logo {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #0078d4;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .mexico-flag {
+            font-size: 18px;
+            margin-left: 5px;
         }
 
         .powerbi-brand {
@@ -48,14 +172,16 @@
         .powerbi-title {
             font-size: 1rem;
             font-weight: 600;
-            color: #323130;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         .report-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #323130;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
             letter-spacing: -0.01em;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         .tab-container {
@@ -71,23 +197,27 @@
             border: none;
             border-bottom: 3px solid transparent;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             font-weight: 600;
             font-size: 14px;
             color: #605e5c;
             position: relative;
+            border-radius: 8px 8px 0 0;
         }
 
         .tab.active {
-            background-color: transparent;
-            color: #0078d4;
-            border-bottom: 3px solid #0078d4;
+            background-color: rgba(0, 51, 102, 0.05);
+            color: #003366;
+            border-bottom: 3px solid #ff6600;
+            box-shadow: 0 2px 8px rgba(255, 102, 0, 0.2);
         }
 
         .tab:hover:not(.active) {
-            color: #323130;
-            background-color: #f3f2f1;
-            border-radius: 4px 4px 0 0;
+            color: #003366;
+            background-color: rgba(255, 204, 0, 0.1);
+            border-bottom: 3px solid rgba(255, 102, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.1);
         }
 
         .filters-container {
@@ -502,8 +632,37 @@
 
         .bloque-content {
             display: flex;
-            padding: 20px;
-            gap: 20px;
+            padding: 24px;
+            gap: 24px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            margin: 16px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bloque-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0078d4, #00bcf2, #40e0d0);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .bloque-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .bloque-content:hover::before {
+            opacity: 1;
         }
 
         .tendencial-chart {
@@ -511,10 +670,26 @@
         }
 
         .chart-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #323130;
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #212529;
+            background: linear-gradient(45deg, #0078d4, #00bcf2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .chart-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #0078d4, #00bcf2);
+            border-radius: 2px;
         }
 
         .chart-legend {
@@ -867,7 +1042,13 @@
                 </div>
                 <span class="powerbi-title">Power BI</span>
             </div>
-            <div class="report-title">Unilever Compliance Dashboard</div>
+            <div class="unilever-brand">
+                <div class="unilever-logo">
+                    <span class="unilever-text">UNILEVER</span>
+                    <span class="mexico-text">México</span>
+                </div>
+                <div class="report-title">Dashboard de Cumplimiento</div>
+            </div>
         </div>
         
         <!-- Tabs -->
@@ -2665,16 +2846,16 @@
             } else {
                 // Update legend for line charts
                 if (chartKey === 'tendencial') {
-                    updateLegend([
-                        { color: '#FF9800', label: 'Compliance' },
-                        { color: '#8B4513', label: 'Target' }
-                    ]);
+            updateLegend([
+                { color: '#FF9800', label: 'Compliance' },
+                { color: '#8B4513', label: 'Target' }
+            ]);
                 }
                 // Draw default line chart for monthly progression
                 drawUnifiedLineChart(ctx, canvas, config);
             }
         }
-
+            
         function drawUnifiedLineChart(ctx, canvas, config) {
             const width = canvas.width;
             const height = canvas.height;
@@ -2737,7 +2918,7 @@
                 const y = margin.top + chartHeight - (compliance[i] - minY) * yScale;
                 if (i === 0) {
                     ctx.moveTo(x, y);
-                } else {
+            } else {
                     ctx.lineTo(x, y);
                 }
             }
@@ -2796,18 +2977,18 @@
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
-            // Colors for categories (elegant professional palette)
+            // Unilever corporate color palette
             const colors = [
-                '#0078d4', // Microsoft Blue
-                '#00bcf2', // Cyan
-                '#40e0d0', // Turquoise  
-                '#32cd32', // Lime Green
-                '#ffd700', // Gold
-                '#ff8c00', // Dark Orange
-                '#ff6347', // Tomato
-                '#da70d6', // Orchid
-                '#87ceeb', // Sky Blue
-                '#98fb98'  // Pale Green
+                '#003366', // Unilever Navy
+                '#0066cc', // Unilever Blue  
+                '#00a2e8', // Bright Blue
+                '#ff6600', // Unilever Orange
+                '#ffcc00', // Unilever Yellow
+                '#66cc99', // Fresh Green
+                '#9966cc', // Purple
+                '#cc6699', // Pink
+                '#33cc99', // Teal
+                '#ff9933'  // Light Orange
             ];
             
             // Sort categories by percentage (descending)
@@ -2818,11 +2999,16 @@
             const barHeight = chartHeight / sortedData.length * 0.7; // 70% of available space per bar
             const barSpacing = chartHeight / sortedData.length * 0.3; // 30% for spacing
             
-            // Draw title
-            ctx.fillStyle = '#333';
-            ctx.font = 'bold 16px Arial';
+            // Draw title with Unilever styling
+            ctx.fillStyle = '#003366';
+            ctx.font = 'bold 18px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('Distribución por Categoría', width / 2, 25);
+            ctx.fillText('Distribución por Categoría - México', width / 2, 25);
+            
+            // Add subtitle
+            ctx.fillStyle = '#666';
+            ctx.font = '12px Arial';
+            ctx.fillText('Análisis de participación por categoría de productos Unilever', width / 2, 45);
             
             // Draw bars
             sortedData.forEach((item, index) => {
@@ -2905,41 +3091,37 @@
             // Different category data based on chart type
             const categoryDataSets = {
                 tendencial: [
-                    { name: 'Hair Care', value: 28.5, percentage: 28.5 },
-                    { name: 'Personal Care', value: 22.3, percentage: 22.3 },
-                    { name: 'Foods', value: 18.7, percentage: 18.7 },
-                    { name: 'Home Care', value: 15.2, percentage: 15.2 },
-                    { name: 'Ice Cream', value: 8.9, percentage: 8.9 },
-                    { name: 'Tea', value: 6.4, percentage: 6.4 }
+                    { name: 'Cuidado Personal', value: 32.5, percentage: 32.5 },
+                    { name: 'Cuidado del Hogar', value: 24.8, percentage: 24.8 },
+                    { name: 'Alimentos', value: 21.3, percentage: 21.3 },
+                    { name: 'Cuidado del Cabello', value: 15.7, percentage: 15.7 },
+                    { name: 'Helados', value: 5.7, percentage: 5.7 }
                 ],
                 posicion: [
-                    { name: 'Shampoo', value: 32.1, percentage: 32.1 },
-                    { name: 'Deodorants', value: 24.8, percentage: 24.8 },
-                    { name: 'Soaps', value: 18.9, percentage: 18.9 },
-                    { name: 'Conditioners', value: 12.7, percentage: 12.7 },
-                    { name: 'Styling', value: 11.5, percentage: 11.5 }
+                    { name: 'Dove', value: 28.4, percentage: 28.4 },
+                    { name: 'Axe', value: 22.1, percentage: 22.1 },
+                    { name: 'Rexona', value: 18.6, percentage: 18.6 },
+                    { name: 'TRESemmé', value: 16.2, percentage: 16.2 },
+                    { name: 'Sedal', value: 14.7, percentage: 14.7 }
                 ],
                 adyacencia: [
-                    { name: 'Caldos', value: 35.2, percentage: 35.2 },
-                    { name: 'Mayonesa', value: 26.8, percentage: 26.8 },
-                    { name: 'Salsas', value: 19.4, percentage: 19.4 },
-                    { name: 'Aderezos', value: 18.6, percentage: 18.6 }
+                    { name: 'Knorr', value: 42.3, percentage: 42.3 },
+                    { name: 'Hellmann\'s', value: 31.7, percentage: 31.7 },
+                    { name: 'Maizena', value: 26.0, percentage: 26.0 }
                 ],
                 cajillas: [
-                    { name: 'Detergentes', value: 42.3, percentage: 42.3 },
-                    { name: 'Suavizantes', value: 28.7, percentage: 28.7 },
-                    { name: 'Limpiadores', value: 29.0, percentage: 29.0 }
+                    { name: 'Surf', value: 35.8, percentage: 35.8 },
+                    { name: 'Skip', value: 32.2, percentage: 32.2 },
+                    { name: 'Comfort', value: 32.0, percentage: 32.0 }
                 ],
                 adyacenciaBloque: [
-                    { name: 'Magnum', value: 38.5, percentage: 38.5 },
-                    { name: 'Cornetto', value: 31.2, percentage: 31.2 },
-                    { name: 'Ben & Jerry\'s', value: 18.8, percentage: 18.8 },
-                    { name: 'Carte D\'Or', value: 11.5, percentage: 11.5 }
+                    { name: 'Magnum', value: 41.5, percentage: 41.5 },
+                    { name: 'Cornetto', value: 28.3, percentage: 28.3 },
+                    { name: 'Holanda', value: 30.2, percentage: 30.2 }
                 ],
                 presencia: [
-                    { name: 'Lipton', value: 45.6, percentage: 45.6 },
-                    { name: 'PG Tips', value: 28.9, percentage: 28.9 },
-                    { name: 'Knorr Tea', value: 25.5, percentage: 25.5 }
+                    { name: 'Lipton', value: 52.4, percentage: 52.4 },
+                    { name: 'Knorr Suiza', value: 47.6, percentage: 47.6 }
                 ]
             };
             
@@ -3833,7 +4015,7 @@
             }
         }
 
-                function drawAdyacenciaChart(viewType = null) {
+        function drawAdyacenciaChart(viewType = null) {
             drawUnifiedChart('adyacencia', viewType);
         }
         
@@ -4676,6 +4858,75 @@
                 switchTab('glosario');
             }
         });
+        function toggleDetails(button, category) {
+            console.log('Toggle details called for:', category);
+            
+            // Find the current row
+            const currentRow = button.closest('tr');
+            if (!currentRow) return;
+            
+            // Check if button is currently expanded or collapsed
+            const isExpanded = button.classList.contains('expanded');
+            
+            if (isExpanded) {
+                // Collapse: Hide child rows and change button text to −
+                button.classList.remove('expanded');
+                button.textContent = '−';
+                
+                // Hide all subsequent rows until we find another main row (with non-empty first cell)
+                let nextRow = currentRow.nextElementSibling;
+                while (nextRow && isChildRow(nextRow)) {
+                    nextRow.style.display = 'none';
+                    nextRow = nextRow.nextElementSibling;
+                }
+                
+                // Also collapse any other expanded buttons in child rows
+                collapseChildButtons(currentRow);
+                
+            } else {
+                // Expand: Show child rows and change button text to +
+                button.classList.add('expanded');
+                button.textContent = '+';
+                
+                // Show all subsequent rows until we find another main row
+                let nextRow = currentRow.nextElementSibling;
+                while (nextRow && isChildRow(nextRow)) {
+                    nextRow.style.display = '';
+                    nextRow = nextRow.nextElementSibling;
+                }
+            }
+        }
+
+        function isChildRow(row) {
+            // A child row has empty cells at the beginning
+            const cells = row.querySelectorAll('td');
+            if (cells.length === 0) return false;
+            
+            // Check if the first few cells are empty (no text content besides buttons)
+            for (let i = 0; i < Math.min(3, cells.length); i++) {
+                const cellText = cells[i].textContent.trim();
+                // If cell has text (excluding button symbols), it's not a child row
+                if (cellText && cellText !== '−' && cellText !== '+') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function collapseChildButtons(parentRow) {
+            let nextRow = parentRow.nextElementSibling;
+            while (nextRow && isChildRow(nextRow)) {
+                const buttons = nextRow.querySelectorAll('.expand-btn');
+                buttons.forEach(btn => {
+                    if (btn.classList.contains('expanded')) {
+                        btn.classList.remove('expanded');
+                        btn.textContent = '−';
+                    }
+                });
+                nextRow = nextRow.nextElementSibling;
+            }
+        }
+
         function filterGlosarioCategory() {
             const categorySelector = document.getElementById('categoriaSelector');
             const selectedCategory = categorySelector.value;
