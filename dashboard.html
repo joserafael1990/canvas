@@ -3138,11 +3138,6 @@
         }
 
         function drawCategoryBarChart(ctx, canvas, config, chartKey, viewType = 'categoria') {
-            console.log(`📊 ========== drawCategoryBarChart CALLED ==========`);
-            console.log(`📊 Parameters: chartKey=${chartKey}, viewType=${viewType}`);
-            console.log(`📊 Canvas ID: ${canvas.id}`);
-            console.log(`📊 Function call stack:`, new Error().stack);
-            
             const width = canvas.width;
             const height = canvas.height;
             
@@ -3210,14 +3205,12 @@
                 ctx.fillText(item.name, margin.left - 10, y + barHeight / 2);
                 
                 // Draw percentage at the end of bar only (single location)
-                console.log(`🎯 Drawing percentage for ${item.name}: ${item.percentage.toFixed(1)}% at position (${margin.left + barWidth + 5}, ${y + barHeight / 2})`);
-                console.log(`⚠️ TEMPORARILY COMMENTED OUT PERCENTAGE DRAWING TO TEST DUPLICATION`);
-                // ctx.fillStyle = '#333';
-                // ctx.font = 'bold 12px Arial';
-                // ctx.textAlign = 'left';
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'left';
                 
-                // const textX = margin.left + barWidth + 5;
-                // ctx.fillText(item.percentage.toFixed(1) + '%', textX, y + barHeight / 2);
+                const textX = margin.left + barWidth + 5;
+                ctx.fillText(item.percentage.toFixed(1) + '%', textX, y + barHeight / 2);
                 
 
             });
