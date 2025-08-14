@@ -467,8 +467,11 @@
         }
 
         .glosario-data-table {
-            overflow-x: auto;
+            overflow: auto;
             margin-bottom: 20px;
+            max-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .glosario-data-table table {
@@ -780,6 +783,7 @@
         .data-table-container {
             border-top: 1px solid #edebe9;
             background-color: #ffffff;
+            margin-bottom: 20px;
         }
 
         .table-header {
@@ -792,8 +796,42 @@
         }
 
         .data-table {
-            overflow-x: auto;
+            overflow: auto;
+            max-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
+
+        /* Custom scrollbar styling for tables */
+        .data-table::-webkit-scrollbar,
+        .glosario-data-table::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .data-table::-webkit-scrollbar-track,
+        .glosario-data-table::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .data-table::-webkit-scrollbar-thumb,
+        .glosario-data-table::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .data-table::-webkit-scrollbar-thumb:hover,
+        .glosario-data-table::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        .data-table::-webkit-scrollbar-corner,
+        .glosario-data-table::-webkit-scrollbar-corner {
+            background: #f1f1f1;
+        }
+
+
 
         .data-table table {
             width: 100%;
@@ -1018,6 +1056,11 @@
             
             .data-table {
                 font-size: 0.75rem;
+                max-height: 300px; /* Smaller max height on mobile */
+            }
+            
+            .glosario-data-table {
+                max-height: 300px; /* Smaller max height on mobile */
             }
             
             .data-table th,
@@ -2839,17 +2882,29 @@
             ctx.resetTransform();
             ctx.save();
 
-            // Determine chart type based on viewType
-            if (viewType === 'categoria') {
-                // Draw bar chart for categoria view
-                drawCategoryBarChart(ctx, canvas, config, chartKey);
+            // Automatically determine the best chart type based on viewType
+            if (viewType && viewType !== '' && viewType !== null) {
+                const chartType = getChartTypeForView(viewType);
+                
+                switch(chartType) {
+                    case 'line':
+                        drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType);
+                        break;
+                    case 'vertical-bar':
+                        drawVerticalBarChart(ctx, canvas, config, chartKey, viewType);
+                        break;
+                    case 'bar':
+                    default:
+                        drawCategoryBarChart(ctx, canvas, config, chartKey, viewType);
+                        break;
+                }
             } else {
                 // Update legend for line charts
                 if (chartKey === 'tendencial') {
-            updateLegend([
-                { color: '#FF9800', label: 'Compliance' },
-                { color: '#8B4513', label: 'Target' }
-            ]);
+                    updateLegend([
+                        { color: '#FF9800', label: 'Compliance' },
+                        { color: '#8B4513', label: 'Target' }
+                    ]);
                 }
                 // Draw default line chart for monthly progression
                 drawUnifiedLineChart(ctx, canvas, config);
@@ -2965,12 +3020,12 @@
             }
         }
 
-        function drawCategoryBarChart(ctx, canvas, config, chartKey) {
+        function drawCategoryBarChart(ctx, canvas, config, chartKey, viewType = 'categoria') {
             const width = canvas.width;
             const height = canvas.height;
             
-            // Category data for different chart types
-            const categoryData = getCategoryData(chartKey);
+            // Get analysis data based on selected view type
+            const categoryData = getAnalysisData(chartKey, viewType);
             
             // Chart dimensions
             const margin = { top: 50, right: 40, bottom: 50, left: 180 };
@@ -2999,16 +3054,41 @@
             const barHeight = chartHeight / sortedData.length * 0.7; // 70% of available space per bar
             const barSpacing = chartHeight / sortedData.length * 0.3; // 30% for spacing
             
+            // Dynamic title based on view type
+            const viewTitles = {
+                'bu': 'Análisis por Business Unit',
+                'categoria': 'Distribución por Categoría',
+                'cadena': 'Análisis por Cadena Comercial',
+                'formato': 'Análisis por Formato de Tienda',
+                'divisional': 'Análisis por División Geográfica',
+                'asesor': 'Desempeño por Asesor de Ventas',
+                'tienda': 'Análisis por Tienda',
+                'num-tienda': 'Análisis por Número de Tienda',
+                'proyecto': 'Análisis por Campaña de Marketing'
+            };
+            
+            const viewSubtitles = {
+                'bu': 'Comparación de desempeño entre unidades de negocio',
+                'categoria': 'Participación por categoría de productos Unilever',
+                'cadena': 'Desempeño en principales cadenas comerciales de México',
+                'formato': 'Análisis por tipo de establecimiento comercial',
+                'divisional': 'Desempeño por regiones geográficas de México',
+                'asesor': 'Evaluación individual de representantes de ventas',
+                'tienda': 'Desempeño por establecimiento específico',
+                'num-tienda': 'Análisis por identificador de tienda',
+                'proyecto': 'Efectividad de campañas de marketing actuales'
+            };
+            
             // Draw title with Unilever styling
             ctx.fillStyle = '#003366';
             ctx.font = 'bold 18px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('Distribución por Categoría - México', width / 2, 25);
+            ctx.fillText(viewTitles[viewType] + ' - México', width / 2, 25);
             
             // Add subtitle
             ctx.fillStyle = '#666';
             ctx.font = '12px Arial';
-            ctx.fillText('Análisis de participación por categoría de productos Unilever', width / 2, 45);
+            ctx.fillText(viewSubtitles[viewType], width / 2, 45);
             
             // Draw bars
             sortedData.forEach((item, index) => {
@@ -3087,60 +3167,485 @@
             }
         }
 
-        function getCategoryData(chartKey) {
-            // Different category data based on chart type
-            const categoryDataSets = {
-                tendencial: [
-                    { name: 'Cuidado Personal', value: 32.5, percentage: 32.5 },
-                    { name: 'Cuidado del Hogar', value: 24.8, percentage: 24.8 },
-                    { name: 'Alimentos', value: 21.3, percentage: 21.3 },
-                    { name: 'Cuidado del Cabello', value: 15.7, percentage: 15.7 },
-                    { name: 'Helados', value: 5.7, percentage: 5.7 }
-                ],
-                posicion: [
-                    { name: 'Dove', value: 28.4, percentage: 28.4 },
-                    { name: 'Axe', value: 22.1, percentage: 22.1 },
-                    { name: 'Rexona', value: 18.6, percentage: 18.6 },
-                    { name: 'TRESemmé', value: 16.2, percentage: 16.2 },
-                    { name: 'Sedal', value: 14.7, percentage: 14.7 }
-                ],
-                adyacencia: [
-                    { name: 'Knorr', value: 42.3, percentage: 42.3 },
-                    { name: 'Hellmann\'s', value: 31.7, percentage: 31.7 },
-                    { name: 'Maizena', value: 26.0, percentage: 26.0 }
-                ],
-                cajillas: [
-                    { name: 'Surf', value: 35.8, percentage: 35.8 },
-                    { name: 'Skip', value: 32.2, percentage: 32.2 },
-                    { name: 'Comfort', value: 32.0, percentage: 32.0 }
-                ],
-                adyacenciaBloque: [
-                    { name: 'Magnum', value: 41.5, percentage: 41.5 },
-                    { name: 'Cornetto', value: 28.3, percentage: 28.3 },
-                    { name: 'Holanda', value: 30.2, percentage: 30.2 }
-                ],
-                presencia: [
-                    { name: 'Lipton', value: 52.4, percentage: 52.4 },
-                    { name: 'Knorr Suiza', value: 47.6, percentage: 47.6 }
-                ]
+        function getAnalysisData(chartKey, viewType) {
+            // Comprehensive data for different analysis views
+            const analysisDataSets = {
+                // BU Analysis - Business Units
+                bu: {
+                    tendencial: [
+                        { name: 'BU Personal Care', value: 68.5, percentage: 68.5 },
+                        { name: 'BU Home Care', value: 62.3, percentage: 62.3 },
+                        { name: 'BU Foods & Refreshment', value: 58.7, percentage: 58.7 },
+                        { name: 'BU Beauty & Personal Care', value: 72.1, percentage: 72.1 },
+                        { name: 'BU Ice Cream', value: 45.2, percentage: 45.2 }
+                    ],
+                    // Same data structure for other chart types with BU focus
+                    posicion: [
+                        { name: 'BU Personal Care', value: 71.2, percentage: 71.2 },
+                        { name: 'BU Home Care', value: 66.8, percentage: 66.8 },
+                        { name: 'BU Foods & Refreshment', value: 62.4, percentage: 62.4 },
+                        { name: 'BU Beauty & Personal Care', value: 75.6, percentage: 75.6 },
+                        { name: 'BU Ice Cream', value: 48.9, percentage: 48.9 }
+                    ]
+                },
+
+                // Category Analysis - Unilever Product Categories  
+                categoria: {
+                    tendencial: [
+                        { name: 'Hair', value: 34.5, percentage: 34.5 },
+                        { name: 'Facial', value: 28.7, percentage: 28.7 },
+                        { name: 'Caldos', value: 22.3, percentage: 22.3 },
+                        { name: 'Desodorantes', value: 14.5, percentage: 14.5 }
+                    ],
+                    posicion: [
+                        { name: 'Hair', value: 36.8, percentage: 36.8 },
+                        { name: 'Facial', value: 30.2, percentage: 30.2 },
+                        { name: 'Caldos', value: 20.7, percentage: 20.7 },
+                        { name: 'Desodorantes', value: 12.3, percentage: 12.3 }
+                    ],
+                    adyacencia: [
+                        { name: 'Hair', value: 32.1, percentage: 32.1 },
+                        { name: 'Facial', value: 27.9, percentage: 27.9 },
+                        { name: 'Caldos', value: 24.8, percentage: 24.8 },
+                        { name: 'Desodorantes', value: 15.2, percentage: 15.2 }
+                    ],
+                    cajillas: [
+                        { name: 'Hair', value: 38.4, percentage: 38.4 },
+                        { name: 'Facial', value: 26.1, percentage: 26.1 },
+                        { name: 'Caldos', value: 21.9, percentage: 21.9 },
+                        { name: 'Desodorantes', value: 13.6, percentage: 13.6 }
+                    ],
+                    adyacenciaBloque: [
+                        { name: 'Hair', value: 35.7, percentage: 35.7 },
+                        { name: 'Facial', value: 29.3, percentage: 29.3 },
+                        { name: 'Caldos', value: 22.5, percentage: 22.5 },
+                        { name: 'Desodorantes', value: 12.5, percentage: 12.5 }
+                    ],
+                    presencia: [
+                        { name: 'Hair', value: 33.2, percentage: 33.2 },
+                        { name: 'Facial', value: 31.4, percentage: 31.4 },
+                        { name: 'Caldos', value: 23.7, percentage: 23.7 },
+                        { name: 'Desodorantes', value: 11.7, percentage: 11.7 }
+                    ]
+                },
+
+                // Chain Analysis - Mexican Retailers
+                cadena: {
+                    tendencial: [
+                        { name: 'Walmart México', value: 24.8, percentage: 24.8 },
+                        { name: 'Soriana', value: 18.7, percentage: 18.7 },
+                        { name: 'OXXO', value: 16.2, percentage: 16.2 },
+                        { name: 'Chedraui', value: 14.5, percentage: 14.5 },
+                        { name: 'HEB México', value: 12.3, percentage: 12.3 },
+                        { name: 'Aurrera', value: 13.5, percentage: 13.5 }
+                    ]
+                },
+
+                // Format Analysis - Store Formats
+                formato: {
+                    tendencial: [
+                        { name: 'Hipermercados', value: 32.4, percentage: 32.4 },
+                        { name: 'Supermercados', value: 28.7, percentage: 28.7 },
+                        { name: 'Tiendas de Conveniencia', value: 21.3, percentage: 21.3 },
+                        { name: 'Farmacias', value: 12.8, percentage: 12.8 },
+                        { name: 'Clubes de Precio', value: 4.8, percentage: 4.8 }
+                    ]
+                },
+
+                // Divisional Analysis - Mexican Geographic Regions
+                divisional: {
+                    tendencial: [
+                        { name: 'Valle de México', value: 28.5, percentage: 28.5 },
+                        { name: 'Noreste (Nuevo León)', value: 18.7, percentage: 18.7 },
+                        { name: 'Occidente (Jalisco)', value: 16.2, percentage: 16.2 },
+                        { name: 'Bajío (Guanajuato)', value: 14.8, percentage: 14.8 },
+                        { name: 'Norte (Chihuahua)', value: 12.3, percentage: 12.3 },
+                        { name: 'Sureste (Yucatán)', value: 9.5, percentage: 9.5 }
+                    ]
+                },
+
+                // Asesor Analysis - Sales Representatives
+                asesor: {
+                    tendencial: [
+                        { name: 'Carlos Mendoza', value: 78.5, percentage: 78.5 },
+                        { name: 'Ana García', value: 72.3, percentage: 72.3 },
+                        { name: 'Luis Rodríguez', value: 69.7, percentage: 69.7 },
+                        { name: 'María Torres', value: 65.2, percentage: 65.2 },
+                        { name: 'Jorge Hernández', value: 61.8, percentage: 61.8 },
+                        { name: 'Sofia Morales', value: 58.4, percentage: 58.4 }
+                    ]
+                },
+
+                // Tienda Analysis - Store Names
+                tienda: {
+                    tendencial: [
+                        { name: 'Walmart Polanco', value: 85.2, percentage: 85.2 },
+                        { name: 'Soriana Santa Fe', value: 78.6, percentage: 78.6 },
+                        { name: 'Chedraui Insurgentes', value: 74.3, percentage: 74.3 },
+                        { name: 'HEB Monterrey Centro', value: 71.8, percentage: 71.8 },
+                        { name: 'Aurrera Doctores', value: 68.5, percentage: 68.5 }
+                    ]
+                },
+
+                // Num-Tienda Analysis - Store Numbers
+                'num-tienda': {
+                    tendencial: [
+                        { name: 'Tienda #2847', value: 82.4, percentage: 82.4 },
+                        { name: 'Tienda #1523', value: 79.1, percentage: 79.1 },
+                        { name: 'Tienda #3691', value: 76.8, percentage: 76.8 },
+                        { name: 'Tienda #4125', value: 73.2, percentage: 73.2 },
+                        { name: 'Tienda #2058', value: 70.6, percentage: 70.6 }
+                    ]
+                },
+
+                // Proyecto Analysis - Marketing Campaigns
+                proyecto: {
+                    tendencial: [
+                        { name: 'Campaña Dove "Belleza Real"', value: 76.8, percentage: 76.8 },
+                        { name: 'Lanzamiento Axe Black', value: 72.4, percentage: 72.4 },
+                        { name: 'Promo Knorr Verano', value: 68.9, percentage: 68.9 },
+                        { name: 'Rexona "Sin Límites"', value: 65.3, percentage: 65.3 },
+                        { name: 'Magnum Premium Launch', value: 61.7, percentage: 61.7 }
+                    ]
+                }
             };
             
-            return categoryDataSets[chartKey] || categoryDataSets.tendencial;
+            // Get the data for the specific view type and chart
+            const viewData = analysisDataSets[viewType];
+            if (viewData && viewData[chartKey]) {
+                return viewData[chartKey];
+            }
+            
+            // Fallback to categoria data if specific combination doesn't exist
+            return analysisDataSets.categoria.tendencial;
         }
         
         function getChartTypeForView(viewType) {
-            switch(viewType) {
-                case 'bu': return 'line';
-                case 'categoria': return 'bar';
-                case 'cadena': return 'line';
-                case 'formato': return 'pie';
-                case 'divisional': return 'bar';
-                case 'asesor': return 'line';
-                case 'tienda': return 'bar';
-                case 'num-tienda': return 'pie';
-                case 'proyecto': return 'bar';
-                default: return 'line';
+            // Intelligent chart type selection based on data characteristics and UX best practices
+            const chartTypeLogic = {
+                // Business Units: Line chart shows performance trends over time - best for strategic overview
+                'bu': 'line',
+                
+                // Categories: Horizontal bars show clear category comparison with readable labels
+                'categoria': 'bar',
+                
+                // Retail Chains: Horizontal bars work best for comparing performance across chains
+                'cadena': 'bar',
+                
+                // Store Formats: Vertical bars show format hierarchy and performance nicely
+                'formato': 'vertical-bar',
+                
+                // Geographic Divisions: Line chart shows regional trends and patterns over time
+                'divisional': 'line',
+                
+                // Sales Representatives: Vertical bars allow easy performance comparison between reps
+                'asesor': 'vertical-bar',
+                
+                // Individual Stores: Horizontal bars work better for store names (often long)
+                'tienda': 'bar',
+                
+                // Store Numbers: Horizontal bars work well for numeric store IDs
+                'num-tienda': 'bar',
+                
+                // Marketing Campaigns: Line chart shows campaign effectiveness over time
+                'proyecto': 'line'
+            };
+            
+            return chartTypeLogic[viewType] || 'bar';
+        }
+
+        function drawVerticalBarChart(ctx, canvas, config, chartKey, viewType = 'categoria') {
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Get analysis data based on selected view type
+            const categoryData = getAnalysisData(chartKey, viewType);
+            
+            // Chart dimensions
+            const margin = { top: 80, right: 40, bottom: 100, left: 60 };
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Sort data by percentage (descending)
+            const sortedData = [...categoryData].sort((a, b) => b.percentage - a.percentage);
+            
+            // Calculate scales
+            const maxPercentage = Math.max(...sortedData.map(item => item.percentage));
+            const barWidth = chartWidth / sortedData.length * 0.7; // 70% of available space per bar
+            const barSpacing = chartWidth / sortedData.length * 0.3; // 30% for spacing
+            
+            // Dynamic title based on view type
+            const viewTitles = {
+                'bu': 'Análisis por Business Unit',
+                'categoria': 'Distribución por Categoría',
+                'cadena': 'Análisis por Cadena Comercial',
+                'formato': 'Análisis por Formato de Tienda',
+                'divisional': 'Análisis por División Geográfica',
+                'asesor': 'Desempeño por Asesor de Ventas',
+                'tienda': 'Análisis por Tienda',
+                'num-tienda': 'Análisis por Número de Tienda',
+                'proyecto': 'Análisis por Campaña de Marketing'
+            };
+            
+            const viewSubtitles = {
+                'bu': 'Comparación de desempeño entre unidades de negocio',
+                'categoria': 'Participación por categoría de productos Unilever',
+                'cadena': 'Desempeño en principales cadenas comerciales de México',
+                'formato': 'Análisis por tipo de establecimiento comercial',
+                'divisional': 'Desempeño por regiones geográficas de México',
+                'asesor': 'Evaluación individual de representantes de ventas',
+                'tienda': 'Desempeño por establecimiento específico',
+                'num-tienda': 'Análisis por identificador de tienda',
+                'proyecto': 'Efectividad de campañas de marketing actuales'
+            };
+            
+            // Draw title with Unilever styling
+            ctx.fillStyle = '#003366';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(viewTitles[viewType] + ' - México', width / 2, 25);
+            
+            // Add subtitle
+            ctx.fillStyle = '#666';
+            ctx.font = '12px Arial';
+            ctx.fillText(viewSubtitles[viewType], width / 2, 45);
+            
+            // Unilever corporate color palette
+            const colors = [
+                '#003366', // Unilever Blue
+                '#0066cc', // Bright Blue
+                '#FF6600', // Unilever Orange
+                '#4CAF50', // Green
+                '#FF9800', // Amber
+                '#9C27B0', // Purple
+                '#00BCD4', // Cyan
+                '#8BC34A', // Light Green
+                '#FFC107', // Yellow
+                '#E91E63'  // Pink
+            ];
+            
+            // Draw bars
+            sortedData.forEach((item, index) => {
+                const x = margin.left + index * (barWidth + barSpacing);
+                const barHeight = (item.percentage / maxPercentage) * chartHeight * 0.9; // 90% of available height
+                const y = margin.top + chartHeight - barHeight;
+                
+                // Draw bar with corporate colors
+                ctx.fillStyle = colors[index % colors.length];
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // Add subtle shadow/border
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(x, y, barWidth, barHeight);
+                
+                // Draw percentage on top of bar
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(item.percentage.toFixed(1) + '%', x + barWidth/2, y - 5);
+                
+                // Draw category name at bottom (rotated for better fit)
+                ctx.save();
+                ctx.translate(x + barWidth/2, margin.top + chartHeight + 20);
+                ctx.rotate(-Math.PI / 4); // 45 degree rotation
+                ctx.fillStyle = '#666';
+                ctx.font = '11px Arial';
+                ctx.textAlign = 'right';
+                
+                // Truncate long names
+                let displayName = item.name;
+                if (displayName.length > 15) {
+                    displayName = displayName.substring(0, 12) + '...';
+                }
+                ctx.fillText(displayName, 0, 0);
+                ctx.restore();
+            });
+            
+            // Draw Y-axis
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, margin.top + chartHeight);
+            ctx.stroke();
+            
+            // Draw Y-axis labels
+            const ySteps = 5;
+            for (let i = 0; i <= ySteps; i++) {
+                const percentage = (maxPercentage / ySteps) * i;
+                const y = margin.top + chartHeight - (i / ySteps) * chartHeight;
+                
+                ctx.fillStyle = '#666';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'right';
+                ctx.fillText(percentage.toFixed(0) + '%', margin.left - 5, y + 3);
             }
+            
+            // Draw X-axis
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top + chartHeight);
+            ctx.lineTo(margin.left + chartWidth, margin.top + chartHeight);
+            ctx.stroke();
+        }
+
+        function drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType) {
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Get analysis data
+            const analysisData = getAnalysisData(chartKey, viewType);
+            
+            // Create time-series data from analysis data
+            const months = ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'];
+            
+            // Generate trend data based on current values
+            const compliance = analysisData.map((item, index) => {
+                const baseValue = item.percentage;
+                // Add some variation to simulate monthly progression
+                const variation = (Math.sin(index * 0.5) * 5) + (Math.random() * 8 - 4);
+                return Math.max(0, Math.min(100, baseValue + variation));
+            });
+            
+            // Target line - slightly higher than average compliance
+            const avgCompliance = compliance.reduce((a, b) => a + b, 0) / compliance.length;
+            const target = new Array(compliance.length).fill(avgCompliance + 15);
+            
+            // Chart dimensions
+            const margin = { top: 80, right: 40, bottom: 60, left: 60 };
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Dynamic title based on view type
+            const viewTitles = {
+                'bu': 'Tendencia por Business Unit',
+                'categoria': 'Tendencia por Categoría',
+                'cadena': 'Tendencia por Cadena Comercial',
+                'formato': 'Tendencia por Formato de Tienda',
+                'divisional': 'Tendencia por División Geográfica',
+                'asesor': 'Tendencia de Desempeño por Asesor',
+                'tienda': 'Tendencia por Tienda',
+                'num-tienda': 'Tendencia por Número de Tienda',
+                'proyecto': 'Tendencia por Campaña de Marketing'
+            };
+            
+            // Draw title
+            ctx.fillStyle = '#003366';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(viewTitles[viewType] + ' - México', width / 2, 25);
+            
+            // Add subtitle
+            ctx.fillStyle = '#666';
+            ctx.font = '12px Arial';
+            ctx.fillText('Evolución temporal del desempeño por ' + viewType, width / 2, 45);
+            
+            // Calculate scales
+            const allValues = [...compliance, ...target];
+            const maxValue = Math.max(...allValues);
+            const minValue = Math.min(...allValues);
+            const range = maxValue - minValue;
+            const padding = range * 0.1;
+            const yMin = Math.max(0, minValue - padding);
+            const yMax = maxValue + padding;
+            
+            // Draw grid lines
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            const gridSteps = 5;
+            
+            for (let i = 0; i <= gridSteps; i++) {
+                const y = margin.top + (i / gridSteps) * chartHeight;
+                ctx.beginPath();
+                ctx.moveTo(margin.left, y);
+                ctx.lineTo(margin.left + chartWidth, y);
+                ctx.stroke();
+            }
+            
+            // Draw axes
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, margin.top + chartHeight);
+            ctx.lineTo(margin.left + chartWidth, margin.top + chartHeight);
+            ctx.stroke();
+            
+            // Draw compliance line
+            ctx.strokeStyle = '#FF9800';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            compliance.forEach((value, index) => {
+                const x = margin.left + (index / (compliance.length - 1)) * chartWidth;
+                const y = margin.top + chartHeight - ((value - yMin) / (yMax - yMin)) * chartHeight;
+                
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+            
+            // Draw target line
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            
+            target.forEach((value, index) => {
+                const x = margin.left + (index / (target.length - 1)) * chartWidth;
+                const y = margin.top + chartHeight - ((value - yMin) / (yMax - yMin)) * chartHeight;
+                
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Draw data points
+            compliance.forEach((value, index) => {
+                const x = margin.left + (index / (compliance.length - 1)) * chartWidth;
+                const y = margin.top + chartHeight - ((value - yMin) / (yMax - yMin)) * chartHeight;
+                
+                ctx.fillStyle = '#FF9800';
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            
+            // Draw Y-axis labels
+            for (let i = 0; i <= gridSteps; i++) {
+                const value = yMin + (i / gridSteps) * (yMax - yMin);
+                const y = margin.top + chartHeight - (i / gridSteps) * chartHeight;
+                
+                ctx.fillStyle = '#666';
+                ctx.font = '11px Arial';
+                ctx.textAlign = 'right';
+                ctx.fillText(value.toFixed(1) + '%', margin.left - 5, y + 3);
+            }
+            
+            // Draw X-axis labels
+            months.slice(0, compliance.length).forEach((month, index) => {
+                const x = margin.left + (index / (compliance.length - 1)) * chartWidth;
+                
+                ctx.fillStyle = '#666';
+                ctx.font = '11px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(month, x, margin.top + chartHeight + 20);
+            });
         }
         
         function drawLineChart(ctx, canvas, compliance, target, labels, dataUnit = '% Performance') {
@@ -4351,6 +4856,8 @@
         function drawPresenciaChart(viewType = null) {
             drawUnifiedChart('presencia', viewType);
         }
+
+
         
         function drawPresenciaLineChart(ctx, canvas, compliance, target, months) {
             const width = canvas.width;
