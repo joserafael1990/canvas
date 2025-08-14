@@ -3028,7 +3028,7 @@
             const categoryData = getAnalysisData(chartKey, viewType);
             
             // Chart dimensions
-            const margin = { top: 50, right: 40, bottom: 50, left: 180 };
+            const margin = { top: 20, right: 40, bottom: 50, left: 180 };
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
@@ -3053,42 +3053,6 @@
             const maxPercentage = Math.max(...sortedData.map(item => item.percentage));
             const barHeight = chartHeight / sortedData.length * 0.7; // 70% of available space per bar
             const barSpacing = chartHeight / sortedData.length * 0.3; // 30% for spacing
-            
-            // Dynamic title based on view type
-            const viewTitles = {
-                'bu': 'Análisis por Business Unit',
-                'categoria': 'Distribución por Categoría',
-                'cadena': 'Análisis por Cadena Comercial',
-                'formato': 'Análisis por Formato de Tienda',
-                'divisional': 'Análisis por División Geográfica',
-                'asesor': 'Desempeño por Asesor de Ventas',
-                'tienda': 'Análisis por Tienda',
-                'num-tienda': 'Análisis por Número de Tienda',
-                'proyecto': 'Análisis por Campaña de Marketing'
-            };
-            
-            const viewSubtitles = {
-                'bu': 'Comparación de desempeño entre unidades de negocio',
-                'categoria': 'Participación por categoría de productos Unilever',
-                'cadena': 'Desempeño en principales cadenas comerciales de México',
-                'formato': 'Análisis por tipo de establecimiento comercial',
-                'divisional': 'Desempeño por regiones geográficas de México',
-                'asesor': 'Evaluación individual de representantes de ventas',
-                'tienda': 'Desempeño por establecimiento específico',
-                'num-tienda': 'Análisis por identificador de tienda',
-                'proyecto': 'Efectividad de campañas de marketing actuales'
-            };
-            
-            // Draw title with Unilever styling
-            ctx.fillStyle = '#003366';
-            ctx.font = 'bold 18px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(viewTitles[viewType] + ' - México', width / 2, 25);
-            
-            // Add subtitle
-            ctx.fillStyle = '#666';
-            ctx.font = '12px Arial';
-            ctx.fillText(viewSubtitles[viewType], width / 2, 45);
             
             // Draw bars
             sortedData.forEach((item, index) => {
@@ -3362,7 +3326,7 @@
             const categoryData = getAnalysisData(chartKey, viewType);
             
             // Chart dimensions
-            const margin = { top: 80, right: 40, bottom: 100, left: 60 };
+            const margin = { top: 20, right: 40, bottom: 100, left: 60 };
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
@@ -3376,42 +3340,6 @@
             const maxPercentage = Math.max(...sortedData.map(item => item.percentage));
             const barWidth = chartWidth / sortedData.length * 0.7; // 70% of available space per bar
             const barSpacing = chartWidth / sortedData.length * 0.3; // 30% for spacing
-            
-            // Dynamic title based on view type
-            const viewTitles = {
-                'bu': 'Análisis por Business Unit',
-                'categoria': 'Distribución por Categoría',
-                'cadena': 'Análisis por Cadena Comercial',
-                'formato': 'Análisis por Formato de Tienda',
-                'divisional': 'Análisis por División Geográfica',
-                'asesor': 'Desempeño por Asesor de Ventas',
-                'tienda': 'Análisis por Tienda',
-                'num-tienda': 'Análisis por Número de Tienda',
-                'proyecto': 'Análisis por Campaña de Marketing'
-            };
-            
-            const viewSubtitles = {
-                'bu': 'Comparación de desempeño entre unidades de negocio',
-                'categoria': 'Participación por categoría de productos Unilever',
-                'cadena': 'Desempeño en principales cadenas comerciales de México',
-                'formato': 'Análisis por tipo de establecimiento comercial',
-                'divisional': 'Desempeño por regiones geográficas de México',
-                'asesor': 'Evaluación individual de representantes de ventas',
-                'tienda': 'Desempeño por establecimiento específico',
-                'num-tienda': 'Análisis por identificador de tienda',
-                'proyecto': 'Efectividad de campañas de marketing actuales'
-            };
-            
-            // Draw title with Unilever styling
-            ctx.fillStyle = '#003366';
-            ctx.font = 'bold 18px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(viewTitles[viewType] + ' - México', width / 2, 25);
-            
-            // Add subtitle
-            ctx.fillStyle = '#666';
-            ctx.font = '12px Arial';
-            ctx.fillText(viewSubtitles[viewType], width / 2, 45);
             
             // Unilever corporate color palette
             const colors = [
@@ -3517,36 +3445,12 @@
             const target = new Array(compliance.length).fill(avgCompliance + 15);
             
             // Chart dimensions
-            const margin = { top: 80, right: 40, bottom: 60, left: 60 };
+            const margin = { top: 20, right: 40, bottom: 60, left: 60 };
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
             // Clear canvas
             ctx.clearRect(0, 0, width, height);
-            
-            // Dynamic title based on view type
-            const viewTitles = {
-                'bu': 'Tendencia por Business Unit',
-                'categoria': 'Tendencia por Categoría',
-                'cadena': 'Tendencia por Cadena Comercial',
-                'formato': 'Tendencia por Formato de Tienda',
-                'divisional': 'Tendencia por División Geográfica',
-                'asesor': 'Tendencia de Desempeño por Asesor',
-                'tienda': 'Tendencia por Tienda',
-                'num-tienda': 'Tendencia por Número de Tienda',
-                'proyecto': 'Tendencia por Campaña de Marketing'
-            };
-            
-            // Draw title
-            ctx.fillStyle = '#003366';
-            ctx.font = 'bold 18px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(viewTitles[viewType] + ' - México', width / 2, 25);
-            
-            // Add subtitle
-            ctx.fillStyle = '#666';
-            ctx.font = '12px Arial';
-            ctx.fillText('Evolución temporal del desempeño por ' + viewType, width / 2, 45);
             
             // Calculate scales
             const allValues = [...compliance, ...target];
