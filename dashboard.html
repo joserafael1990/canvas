@@ -1159,16 +1159,16 @@
                 <label class="filter-label">Año</label>
                 <div class="filter-select" data-filter="ano">
                     <button class="dropdown-button" type="button">
-                        <span class="selected-text">2025</span>
-                        <span class="selected-count">(1)</span>
+                        <span class="selected-text">Todos</span>
+                        <span class="selected-count">(3)</span>
                     </button>
                     <div class="dropdown-content">
-                        <div class="dropdown-option" data-value="2023">
-                            <input type="checkbox" class="dropdown-checkbox" value="2023">
+                        <div class="dropdown-option selected" data-value="2023">
+                            <input type="checkbox" class="dropdown-checkbox" value="2023" checked>
                             <span>2023</span>
                         </div>
-                        <div class="dropdown-option" data-value="2024">
-                            <input type="checkbox" class="dropdown-checkbox" value="2024">
+                        <div class="dropdown-option selected" data-value="2024">
+                            <input type="checkbox" class="dropdown-checkbox" value="2024" checked>
                             <span>2024</span>
                         </div>
                         <div class="dropdown-option selected" data-value="2025">
@@ -1183,56 +1183,56 @@
                 <label class="filter-label">Mes</label>
                 <div class="filter-select" data-filter="mes">
                     <button class="dropdown-button" type="button">
-                        <span class="selected-text">Julio</span>
-                        <span class="selected-count">(1)</span>
+                        <span class="selected-text">Todos</span>
+                        <span class="selected-count">(12)</span>
                     </button>
                     <div class="dropdown-content">
-                        <div class="dropdown-option" data-value="enero">
-                            <input type="checkbox" class="dropdown-checkbox" value="enero">
+                        <div class="dropdown-option selected" data-value="enero">
+                            <input type="checkbox" class="dropdown-checkbox" value="enero" checked>
                             <span>Enero</span>
                         </div>
-                        <div class="dropdown-option" data-value="febrero">
-                            <input type="checkbox" class="dropdown-checkbox" value="febrero">
+                        <div class="dropdown-option selected" data-value="febrero">
+                            <input type="checkbox" class="dropdown-checkbox" value="febrero" checked>
                             <span>Febrero</span>
                         </div>
-                        <div class="dropdown-option" data-value="marzo">
-                            <input type="checkbox" class="dropdown-checkbox" value="marzo">
+                        <div class="dropdown-option selected" data-value="marzo">
+                            <input type="checkbox" class="dropdown-checkbox" value="marzo" checked>
                             <span>Marzo</span>
                         </div>
-                        <div class="dropdown-option" data-value="abril">
-                            <input type="checkbox" class="dropdown-checkbox" value="abril">
+                        <div class="dropdown-option selected" data-value="abril">
+                            <input type="checkbox" class="dropdown-checkbox" value="abril" checked>
                             <span>Abril</span>
                         </div>
-                        <div class="dropdown-option" data-value="mayo">
-                            <input type="checkbox" class="dropdown-checkbox" value="mayo">
+                        <div class="dropdown-option selected" data-value="mayo">
+                            <input type="checkbox" class="dropdown-checkbox" value="mayo" checked>
                             <span>Mayo</span>
                         </div>
-                        <div class="dropdown-option" data-value="junio">
-                            <input type="checkbox" class="dropdown-checkbox" value="junio">
+                        <div class="dropdown-option selected" data-value="junio">
+                            <input type="checkbox" class="dropdown-checkbox" value="junio" checked>
                             <span>Junio</span>
                         </div>
                         <div class="dropdown-option selected" data-value="julio">
                             <input type="checkbox" class="dropdown-checkbox" value="julio" checked>
                             <span>Julio</span>
                         </div>
-                        <div class="dropdown-option" data-value="agosto">
-                            <input type="checkbox" class="dropdown-checkbox" value="agosto">
+                        <div class="dropdown-option selected" data-value="agosto">
+                            <input type="checkbox" class="dropdown-checkbox" value="agosto" checked>
                             <span>Agosto</span>
                         </div>
-                        <div class="dropdown-option" data-value="septiembre">
-                            <input type="checkbox" class="dropdown-checkbox" value="septiembre">
+                        <div class="dropdown-option selected" data-value="septiembre">
+                            <input type="checkbox" class="dropdown-checkbox" value="septiembre" checked>
                             <span>Septiembre</span>
                         </div>
-                        <div class="dropdown-option" data-value="octubre">
-                            <input type="checkbox" class="dropdown-checkbox" value="octubre">
+                        <div class="dropdown-option selected" data-value="octubre">
+                            <input type="checkbox" class="dropdown-checkbox" value="octubre" checked>
                             <span>Octubre</span>
                         </div>
-                        <div class="dropdown-option" data-value="noviembre">
-                            <input type="checkbox" class="dropdown-checkbox" value="noviembre">
+                        <div class="dropdown-option selected" data-value="noviembre">
+                            <input type="checkbox" class="dropdown-checkbox" value="noviembre" checked>
                             <span>Noviembre</span>
                         </div>
-                        <div class="dropdown-option" data-value="diciembre">
-                            <input type="checkbox" class="dropdown-checkbox" value="diciembre">
+                        <div class="dropdown-option selected" data-value="diciembre">
+                            <input type="checkbox" class="dropdown-checkbox" value="diciembre" checked>
                             <span>Diciembre</span>
                         </div>
                     </div>
@@ -2963,11 +2963,11 @@
         };
 
                 // Unified chart drawing function
-        function drawTendencialChart(viewType = null) {
-            drawUnifiedChart('tendencial', viewType);
+        function drawTendencialChart(viewType = null, filterSelections = null) {
+            drawUnifiedChart('tendencial', viewType, filterSelections);
         }
 
-        function drawUnifiedChart(chartKey, viewType = null) {
+        function drawUnifiedChart(chartKey, viewType = null, filterSelections = null) {
 
             
             const config = CHART_CONFIGS[chartKey];
@@ -3007,14 +3007,14 @@
                 
                 switch(chartType) {
                     case 'line':
-                        drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType);
+                        drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType, filterSelections);
                         break;
                     case 'vertical-bar':
-                        drawVerticalBarChart(ctx, canvas, config, chartKey, viewType);
+                        drawVerticalBarChart(ctx, canvas, config, chartKey, viewType, filterSelections);
                         break;
                     case 'bar':
                     default:
-                        drawCategoryBarChart(ctx, canvas, config, chartKey, viewType);
+                        drawCategoryBarChart(ctx, canvas, config, chartKey, viewType, filterSelections);
                         break;
                 }
             } else {
@@ -3139,12 +3139,12 @@
             }
         }
 
-        function drawCategoryBarChart(ctx, canvas, config, chartKey, viewType = 'categoria') {
+        function drawCategoryBarChart(ctx, canvas, config, chartKey, viewType = 'categoria', filterSelections = null) {
             const width = canvas.width;
             const height = canvas.height;
             
             // Get analysis data based on selected view type with validation
-            const categoryData = getAnalysisData(chartKey, viewType);
+            const categoryData = getAnalysisData(chartKey, viewType, filterSelections);
             
             if (!categoryData || !Array.isArray(categoryData) || categoryData.length === 0) {
                 // Draw error message on canvas
@@ -3260,7 +3260,7 @@
             return { name, value, percentage: value };
         }
         
-        function getAnalysisData(chartKey, viewType) {
+        function getAnalysisData(chartKey, viewType, filterSelections = null) {
             // Optimized data structure - reduce memory usage and redundancy
             const analysisDataSets = {
                 // BU Analysis - Business Units
@@ -3664,13 +3664,112 @@
             
             // Get the data for the specific view type and chart
             const viewData = analysisDataSets[viewType];
+            let data;
             
             if (viewData && viewData[chartKey]) {
-                return viewData[chartKey];
+                data = viewData[chartKey];
+            } else {
+                // Fallback to categoria data if specific combination doesn't exist
+                data = analysisDataSets.categoria.tendencial;
             }
             
-            // Fallback to categoria data if specific combination doesn't exist
-            return analysisDataSets.categoria.tendencial;
+            // Apply filters if provided
+            if (filterSelections && data) {
+                data = applyFiltersToData(data, filterSelections, viewType);
+            }
+            
+            return data;
+        }
+        
+        function applyFiltersToData(data, filterSelections, viewType) {
+            if (!data || !Array.isArray(data) || !filterSelections) {
+                return data;
+            }
+            
+            // Create a mapping of view types to their corresponding filter keys
+            const filterMapping = {
+                'categoria': 'categoria',
+                'cadena': 'cadena', 
+                'tienda': 'tienda',
+                'num-tienda': 'num-tienda',
+                'formato': 'formato',
+                'bu': 'bu',
+                'divisional': 'divisional',
+                'asesor': 'asesor',
+                'proyecto': 'proyecto'
+            };
+            
+            // Get the corresponding filter key for the current view type
+            const filterKey = filterMapping[viewType];
+            
+            if (!filterKey || !filterSelections[filterKey]) {
+                return data; // No relevant filter or no selections for this view type
+            }
+            
+            const selectedValues = filterSelections[filterKey];
+            
+            // If all options are selected, return original data
+            if (!selectedValues || selectedValues.length === 0) {
+                return data;
+            }
+            
+            // Filter data based on selected values
+            // This is a simplified approach - in a real scenario, you'd have more sophisticated mapping
+            return data.filter(item => {
+                // For demonstration, we'll filter based on partial name matching
+                // In a real implementation, you'd have proper data relationships
+                return selectedValues.some(selectedValue => {
+                    const normalizedItemName = item.name.toLowerCase();
+                    const normalizedSelectedValue = selectedValue.toLowerCase();
+                    
+                    // Check for partial matches or specific mappings
+                    return normalizedItemName.includes(normalizedSelectedValue) || 
+                           normalizedSelectedValue.includes(normalizedItemName) ||
+                           mapDataToFilter(item.name, selectedValue, viewType);
+                });
+            });
+        }
+        
+        function mapDataToFilter(dataName, filterValue, viewType) {
+            // Create specific mappings between data items and filter values
+            const mappings = {
+                // BU mappings
+                'bu': {
+                    'personal-care': ['BU Personal Care', 'Personal Care'],
+                    'home-care': ['BU Home Care', 'Home Care'],
+                    'foods-refreshment': ['BU Foods & Refreshment', 'Foods'],
+                    'beauty-personal-care': ['BU Beauty & Personal Care', 'Beauty'],
+                    'ice-cream': ['BU Ice Cream', 'Ice Cream']
+                },
+                // Category mappings
+                'categoria': {
+                    'categoria1': ['Categoria 1', 'Cat 1'],
+                    'categoria2': ['Categoria 2', 'Cat 2'],
+                    'categoria3': ['Categoria 3', 'Cat 3'],
+                    'categoria4': ['Categoria 4', 'Cat 4']
+                },
+                // Chain mappings
+                'cadena': {
+                    'walmart': ['Walmart', 'Walmart México'],
+                    'soriana': ['Soriana'],
+                    'oxxo': ['OXXO'],
+                    'chedraui': ['Chedraui'],
+                    'heb': ['HEB', 'HEB México'],
+                    'aurrera': ['Aurrera'],
+                    'liverpool': ['Liverpool'],
+                    'costco': ['Costco', 'Costco México']
+                }
+                // Add more mappings as needed
+            };
+            
+            const viewMappings = mappings[viewType];
+            if (!viewMappings || !viewMappings[filterValue]) {
+                return false;
+            }
+            
+            return viewMappings[filterValue].some(mappedName => 
+                dataName.toLowerCase().includes(mappedName.toLowerCase())
+            );
         }
         
         function getChartTypeForView(viewType) {
@@ -3679,11 +3778,11 @@
                 // Business Units: Line chart shows performance trends over time - best for strategic overview
                 'bu': 'line',
                 
-                // Categories: Horizontal bars show clear category comparison with readable labels
-                'categoria': 'bar',
+                // Categories: Vertical bars show clear category comparison with readable labels
+                'categoria': 'vertical-bar',
                 
-                // Retail Chains: Horizontal bars work best for comparing performance across chains
-                'cadena': 'bar',
+                // Retail Chains: Vertical bars work best for comparing performance across chains
+                'cadena': 'vertical-bar',
                 
                 // Store Formats: Vertical bars show format hierarchy and performance nicely
                 'formato': 'vertical-bar',
@@ -3694,11 +3793,11 @@
                 // Sales Representatives: Vertical bars allow easy performance comparison between reps
                 'asesor': 'vertical-bar',
                 
-                // Individual Stores: Horizontal bars work better for store names (often long)
-                'tienda': 'bar',
+                // Individual Stores: Vertical bars work better for store names
+                'tienda': 'vertical-bar',
                 
-                // Store Numbers: Horizontal bars work well for numeric store IDs
-                'num-tienda': 'bar',
+                // Store Numbers: Vertical bars work well for numeric store IDs
+                'num-tienda': 'vertical-bar',
                 
                 // Marketing Campaigns: Line chart shows campaign effectiveness over time
                 'proyecto': 'line'
@@ -3707,12 +3806,12 @@
             return chartTypeLogic[viewType] || 'bar';
         }
 
-        function drawVerticalBarChart(ctx, canvas, config, chartKey, viewType = 'categoria') {
+        function drawVerticalBarChart(ctx, canvas, config, chartKey, viewType = 'categoria', filterSelections = null) {
             const width = canvas.width;
             const height = canvas.height;
             
             // Get analysis data based on selected view type
-            const categoryData = getAnalysisData(chartKey, viewType);
+            const categoryData = getAnalysisData(chartKey, viewType, filterSelections);
             
             // Chart dimensions
             const margin = { top: 20, right: 40, bottom: 100, left: 60 };
@@ -3811,12 +3910,12 @@
             ctx.stroke();
         }
 
-        function drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType) {
+        function drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType, filterSelections = null) {
             const width = canvas.width;
             const height = canvas.height;
             
             // Get analysis data with validation
-            const analysisData = getAnalysisData(chartKey, viewType);
+            const analysisData = getAnalysisData(chartKey, viewType, filterSelections);
             
             if (!analysisData) {
                 // Draw error message on canvas
@@ -5625,18 +5724,48 @@
         }
 
         function updateAllChartsWithFilters() {
-            // Simple approach: just redraw all the basic charts regardless of view
-            // This should work for any view since the charts will adapt
+            // Get current filter selections
+            const filterSelections = getAllFilterSelections();
+            
+            // Get current vista de análisis selection for each chart
+            const chart1View = document.getElementById('chart1ViewSelector')?.value || '';
+            const chart2View = document.getElementById('chart2ViewSelector')?.value || '';
+            const chart3View = document.getElementById('chart3ViewSelector')?.value || '';
+            const chart4View = document.getElementById('chart4ViewSelector')?.value || '';
+            const chart5View = document.getElementById('chart5ViewSelector')?.value || '';
+            const chart6View = document.getElementById('chart6ViewSelector')?.value || '';
+            
             try {
-                drawTendencialChart();
-                drawPosicionChart();
-                drawAdyacenciaChart();
-                drawCajillasChart();
-                drawAdyacenciaBloqueChart();
-                drawPresenciaChart();
+                // Redraw all charts with current filter selections
+                drawTendencialChart(chart1View, filterSelections);
+                drawPosicionChart(chart2View, filterSelections);
+                drawAdyacenciaChart(chart3View, filterSelections);
+                drawCajillasChart(chart4View, filterSelections);
+                drawAdyacenciaBloqueChart(chart5View, filterSelections);
+                drawPresenciaChart(chart6View, filterSelections);
             } catch (error) {
                 console.error('Error updating charts:', error);
             }
+        }
+
+        function getAllFilterSelections() {
+            const filters = {};
+            
+            // Get all filter dropdowns
+            const filterDropdowns = document.querySelectorAll('.filter-select[data-filter]');
+            
+            filterDropdowns.forEach(dropdown => {
+                const filterType = dropdown.getAttribute('data-filter');
+                const selectedValues = [];
+                
+                dropdown.querySelectorAll('.dropdown-option.selected').forEach(option => {
+                    selectedValues.push(option.getAttribute('data-value'));
+                });
+                
+                filters[filterType] = selectedValues;
+            });
+            
+            return filters;
         }
 
         function toggleDetails(button, category) {
