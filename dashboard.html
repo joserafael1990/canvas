@@ -1543,16 +1543,28 @@
 
                 <!-- Chart and Image Container -->
                 <div class="bloque-content">
+                    <!-- Default Line Chart -->
+                    <div class="tendencial-chart">
+                        <div class="chart-title">Tendencial Anual Bloque - Vista General</div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
+                            <span class="legend-item"><span class="legend-dot target"></span>Target</span>
+                        </div>
+                        <div class="chart-area">
+                            <canvas id="defaultChart1" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="chartTitle">Tendencial Anual Bloque</div>
+                        <div class="chart-title" id="chartTitle">Tendencial Anual Bloque - Vista de Análisis</div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart1ViewSelector" data-chart="chart1" onchange="updateIndividualChart(this)">
-                                <option value="" disabled selected>Seleccionar vista...</option>
-                                <option value="bu">BU</option>
+                                <option value="" disabled>Seleccionar vista...</option>
+                                <option value="bu" selected>BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -1751,16 +1763,28 @@
 
                 <!-- Chart and Image Container -->
                 <div class="bloque-content">
+                    <!-- Default Line Chart -->
+                    <div class="tendencial-chart">
+                        <div class="chart-title">Tendencial Anual Posición de anaquel - Vista General</div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
+                            <span class="legend-item"><span class="legend-dot target"></span>Target</span>
+                        </div>
+                        <div class="chart-area">
+                            <canvas id="defaultChart2" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="posicionChartTitle">Tendencial Anual Posición de anaquel</div>
+                        <div class="chart-title" id="posicionChartTitle">Tendencial Anual Posición de anaquel - Vista de Análisis</div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart2ViewSelector" data-chart="chart2" onchange="updateIndividualChart(this)">
-                                <option value="" disabled selected>Seleccionar vista...</option>
-                                <option value="bu">BU</option>
+                                <option value="" disabled>Seleccionar vista...</option>
+                                <option value="bu" selected>BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -1959,16 +1983,28 @@
 
                 <!-- Chart and Image Container -->
                 <div class="bloque-content">
+                    <!-- Default Line Chart -->
+                    <div class="tendencial-chart">
+                        <div class="chart-title">Tendencial Anual Adyacencia - Vista General</div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
+                            <span class="legend-item"><span class="legend-dot target"></span>Target</span>
+                        </div>
+                        <div class="chart-area">
+                            <canvas id="defaultChart3" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="adyacenciaChartTitle">Tendencial Anual Adyacencia</div>
+                        <div class="chart-title" id="adyacenciaChartTitle">Tendencial Anual Adyacencia - Vista de Análisis</div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart3ViewSelector" data-chart="chart3" onchange="updateIndividualChart(this)">
-                                <option value="" disabled selected>Seleccionar vista...</option>
-                                <option value="bu">BU</option>
+                                <option value="" disabled>Seleccionar vista...</option>
+                                <option value="bu" selected>BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -2097,16 +2133,28 @@
 
                 <!-- Chart and Image Container -->
                 <div class="bloque-content">
+                    <!-- Default Line Chart -->
+                    <div class="tendencial-chart">
+                        <div class="chart-title">Tendencial Anual Cajillas - Vista General</div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
+                            <span class="legend-item"><span class="legend-dot target"></span>Target</span>
+                        </div>
+                        <div class="chart-area">
+                            <canvas id="defaultChart4" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="cajillasChartTitle">Tendencial Anual Cajillas</div>
+                        <div class="chart-title" id="cajillasChartTitle">Tendencial Anual Cajillas - Vista de Análisis</div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart4ViewSelector" data-chart="chart4" onchange="updateIndividualChart(this)">
-                                <option value="" disabled selected>Seleccionar vista...</option>
-                                <option value="bu">BU</option>
+                                <option value="" disabled>Seleccionar vista...</option>
+                                <option value="bu" selected>BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -2235,16 +2283,28 @@
 
                 <!-- Chart and Image Container -->
                 <div class="bloque-content">
+                    <!-- Default Line Chart -->
+                    <div class="tendencial-chart">
+                        <div class="chart-title">Tendencial Anual Adyacencia bloque - Vista General</div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
+                            <span class="legend-item"><span class="legend-dot target"></span>Target</span>
+                        </div>
+                        <div class="chart-area">
+                            <canvas id="defaultChart5" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="adyacenciaBloqueChartTitle">Tendencial Anual Adyacencia bloque</div>
+                        <div class="chart-title" id="adyacenciaBloqueChartTitle">Tendencial Anual Adyacencia bloque - Vista de Análisis</div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <select class="view-dropdown" id="chart5ViewSelector" data-chart="chart5" onchange="updateIndividualChart(this)">
-                                <option value="" disabled selected>Seleccionar vista...</option>
-                                <option value="bu">BU</option>
+                                <option value="" disabled>Seleccionar vista...</option>
+                                <option value="bu" selected>BU</option>
                                 <option value="categoria">Categoría</option>
                                 <option value="cadena">Cadena</option>
                                 <option value="formato">Formato</option>
@@ -2373,19 +2433,31 @@
 
                 <!-- Chart and Image Container -->
                 <div class="bloque-content">
+                    <!-- Default Line Chart -->
+                    <div class="tendencial-chart">
+                        <div class="chart-title">Tendencial Anual % Presencia en charolas - Vista General</div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
+                            <span class="legend-item"><span class="legend-dot target"></span>Target</span>
+                        </div>
+                        <div class="chart-area">
+                            <canvas id="defaultChart6" width="800" height="300"></canvas>
+                        </div>
+                    </div>
+
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="presenciaChartTitle">Tendencial Anual % Presencia en charolas</div>
+                        <div class="chart-title" id="presenciaChartTitle">Tendencial Anual % Presencia en charolas - Vista de Análisis</div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
                             <label class="filter-label">Vista de Análisis</label>
                             <div class="filter-select">
                                 <button class="dropdown-button" data-filter="chart6-view" id="chart6ViewSelector" onclick="toggleDropdown(this)">
-                                    Seleccionar vista...
+                                    BU
                                 </button>
                                 <div class="dropdown-options">
-                                    <div class="dropdown-option" data-value="bu" onclick="selectOption(this)">BU</div>
+                                    <div class="dropdown-option selected" data-value="bu" onclick="selectOption(this)">BU</div>
                                     <div class="dropdown-option" data-value="categoria" onclick="selectOption(this)">Categoría</div>
                                     <div class="dropdown-option" data-value="cadena" onclick="selectOption(this)">Cadena</div>
                                     <div class="dropdown-option" data-value="formato" onclick="selectOption(this)">Formato</div>
@@ -2783,12 +2855,21 @@
             initializeDropdowns();
                 initializeVistaDropdowns();
                 
-            drawTendencialChart();
-            drawPosicionChart();
-            drawAdyacenciaChart();
-            drawCajillasChart();
-            drawAdyacenciaBloqueChart();
-            drawPresenciaChart();
+            // Draw default line charts (always show these)
+            drawDefaultChart1();
+            drawDefaultChart2();
+            drawDefaultChart3();
+            drawDefaultChart4();
+            drawDefaultChart5();
+            drawDefaultChart6();
+                
+            // Draw dynamic charts with default BU view
+            drawTendencialChart('bu');
+            drawPosicionChart('bu');
+            drawAdyacenciaChart('bu');
+            drawCajillasChart('bu');
+            drawAdyacenciaBloqueChart('bu');
+            drawPresenciaChart('bu');
                 
 
 
@@ -5307,6 +5388,166 @@
             drawUnifiedChart('presencia', viewType, filterSelections);
         }
 
+        // Default chart drawing functions (always show line charts without vista analysis)
+        function drawDefaultChart1() {
+            const canvas = document.getElementById('defaultChart1');
+            if (!canvas) return;
+            
+            const config = CHART_CONFIGS['tendencial'];
+            drawDefaultLineChart(canvas, config, 'Bloque');
+        }
+
+        function drawDefaultChart2() {
+            const canvas = document.getElementById('defaultChart2');
+            if (!canvas) return;
+            
+            const config = CHART_CONFIGS['posicion'];
+            drawDefaultLineChart(canvas, config, 'Posición de anaquel');
+        }
+
+        function drawDefaultChart3() {
+            const canvas = document.getElementById('defaultChart3');
+            if (!canvas) return;
+            
+            const config = CHART_CONFIGS['adyacencia'];
+            drawDefaultLineChart(canvas, config, 'Adyacencia');
+        }
+
+        function drawDefaultChart4() {
+            const canvas = document.getElementById('defaultChart4');
+            if (!canvas) return;
+            
+            const config = CHART_CONFIGS['cajillas'];
+            drawDefaultLineChart(canvas, config, 'Cajillas');
+        }
+
+        function drawDefaultChart5() {
+            const canvas = document.getElementById('defaultChart5');
+            if (!canvas) return;
+            
+            const config = CHART_CONFIGS['adyacenciaBloque'];
+            drawDefaultLineChart(canvas, config, 'Adyacencia bloque');
+        }
+
+        function drawDefaultChart6() {
+            const canvas = document.getElementById('defaultChart6');
+            if (!canvas) return;
+            
+            const config = CHART_CONFIGS['presencia'];
+            drawDefaultLineChart(canvas, config, '% Presencia en charolas');
+        }
+
+        function drawDefaultLineChart(canvas, config, chartType) {
+            if (!canvas || !config) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            ctx.resetTransform();
+            ctx.save();
+            
+            // Chart dimensions
+            const margin = { top: 20, right: 40, bottom: 60, left: 60 };
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // Data (fixed line chart data like the image shown)
+            const labels = ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'];
+            const complianceData = [41, 41, 45, 40, 35, 34, 63];
+            const targetData = [65, 65, 65, 65, 65, 65, 65];
+            
+            // Scales
+            const xScale = chartWidth / (labels.length - 1);
+            const maxY = Math.max(...complianceData, ...targetData) + 10;
+            const minY = 0;
+            const yScale = chartHeight / (maxY - minY);
+            
+            // Draw grid lines
+            ctx.strokeStyle = '#e5e5e5';
+            ctx.lineWidth = 1;
+            
+            // Horizontal grid lines
+            for (let y = minY; y <= maxY; y += 10) {
+                const yPos = margin.top + chartHeight - (y - minY) * yScale;
+                ctx.beginPath();
+                ctx.moveTo(margin.left, yPos);
+                ctx.lineTo(margin.left + chartWidth, yPos);
+                ctx.stroke();
+            }
+            
+            // Y-axis labels
+            ctx.fillStyle = '#666';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'right';
+            for (let y = minY; y <= maxY; y += 10) {
+                const yPos = margin.top + chartHeight - (y - minY) * yScale;
+                ctx.fillText(y + '%', margin.left - 10, yPos + 4);
+            }
+            
+            // X-axis labels
+            ctx.textAlign = 'center';
+            labels.forEach((label, i) => {
+                const x = margin.left + i * xScale;
+                ctx.fillText(label, x, height - margin.bottom + 20);
+            });
+            
+            // Draw target line (dotted)
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            targetData.forEach((value, i) => {
+                const x = margin.left + i * xScale;
+                const y = margin.top + chartHeight - (value - minY) * yScale;
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+            
+            // Draw compliance line (solid)
+            ctx.strokeStyle = '#FF9800';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            complianceData.forEach((value, i) => {
+                const x = margin.left + i * xScale;
+                const y = margin.top + chartHeight - (value - minY) * yScale;
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+            
+            // Draw data points and values for compliance line
+            ctx.fillStyle = '#FF9800';
+            complianceData.forEach((value, i) => {
+                const x = margin.left + i * xScale;
+                const y = margin.top + chartHeight - (value - minY) * yScale;
+                
+                // Draw point
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // Draw value label
+                ctx.fillStyle = '#FF9800';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(value + '%', x, y - 10);
+                ctx.fillStyle = '#FF9800';
+            });
+            
+            ctx.restore();
+        }
+
         // Function to clear all filters
         function clearAllFilters() {
             // Reset all filter dropdowns to "Todas" (default)
@@ -5355,15 +5596,15 @@
                 }
             });
             
-            // Reset all Vista de Análisis dropdowns
+            // Reset all Vista de Análisis dropdowns to BU (default)
             const viewSelectors = ['chart1ViewSelector', 'chart2ViewSelector', 'chart3ViewSelector', 
                                  'chart4ViewSelector', 'chart5ViewSelector', 'chart6ViewSelector'];
             
             viewSelectors.forEach(selectorId => {
                 const selector = document.getElementById(selectorId);
                 if (selector) {
-                    selector.value = '';
-                    // Trigger change event to reset charts
+                    selector.value = 'bu';
+                    // Trigger change event to redraw charts with BU view
                     const event = new Event('change');
                     selector.dispatchEvent(event);
                 }
@@ -5748,16 +5989,24 @@
             // Get current filter selections
             const filterSelections = getAllFilterSelections();
             
-            // Get current vista de análisis selection for each chart
-            const chart1View = document.getElementById('chart1ViewSelector')?.value || '';
-            const chart2View = document.getElementById('chart2ViewSelector')?.value || '';
-            const chart3View = document.getElementById('chart3ViewSelector')?.value || '';
-            const chart4View = document.getElementById('chart4ViewSelector')?.value || '';
-            const chart5View = document.getElementById('chart5ViewSelector')?.value || '';
-            const chart6View = document.getElementById('chart6ViewSelector')?.value || '';
+            // Get current vista de análisis selection for each chart (default to 'bu')
+            const chart1View = document.getElementById('chart1ViewSelector')?.value || 'bu';
+            const chart2View = document.getElementById('chart2ViewSelector')?.value || 'bu';
+            const chart3View = document.getElementById('chart3ViewSelector')?.value || 'bu';
+            const chart4View = document.getElementById('chart4ViewSelector')?.value || 'bu';
+            const chart5View = document.getElementById('chart5ViewSelector')?.value || 'bu';
+            const chart6View = document.getElementById('chart6ViewSelector')?.value || 'bu';
             
             try {
-                // Redraw all charts with current filter selections
+                // Redraw default line charts (these don't change with filters)
+                drawDefaultChart1();
+                drawDefaultChart2();
+                drawDefaultChart3();
+                drawDefaultChart4();
+                drawDefaultChart5();
+                drawDefaultChart6();
+                
+                // Redraw dynamic charts with current filter selections
                 drawTendencialChart(chart1View, filterSelections);
                 drawPosicionChart(chart2View, filterSelections);
                 drawAdyacenciaChart(chart3View, filterSelections);
