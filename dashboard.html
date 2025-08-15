@@ -3686,48 +3686,66 @@
                 return data;
             }
             
-            // Create a mapping of view types to their corresponding filter keys
-            const filterMapping = {
-                'categoria': 'categoria',
-                'cadena': 'cadena', 
-                'tienda': 'tienda',
-                'num-tienda': 'num-tienda',
-                'formato': 'formato',
-                'bu': 'bu',
-                'divisional': 'divisional',
-                'asesor': 'asesor',
-                'proyecto': 'proyecto'
+            // If this is a view type that should be filtered, apply the corresponding filter
+            const viewTypeFilters = ['categoria', 'cadena', 'tienda', 'num-tienda', 'formato', 'bu', 'divisional', 'asesor', 'proyecto'];
+            
+            if (viewTypeFilters.includes(viewType)) {
+                const selectedValues = filterSelections[viewType];
+                
+                // If no values are selected for this filter, or all values are selected, don't filter
+                if (!selectedValues || selectedValues.length === 0) {
+                    return data;
+                }
+                
+                // Check if all available options for this filter type are selected
+                const totalOptionsForFilter = getTotalOptionsForFilter(viewType);
+                if (selectedValues.length >= totalOptionsForFilter) {
+                    return data; // All options selected, no need to filter
+                }
+                
+                // Filter data based on selected values
+                return data.filter(item => {
+                    return selectedValues.some(selectedValue => {
+                        return matchDataItemToFilter(item, selectedValue, viewType);
+                    });
+                });
+            }
+            
+            // For non-filterable view types, return data as-is
+            return data;
+        }
+        
+        function getTotalOptionsForFilter(filterType) {
+            // Return the total number of options available for each filter type
+            const totalOptions = {
+                'bu': 5,
+                'categoria': 4,
+                'cadena': 8,
+                'formato': 5,
+                'divisional': 4,
+                'asesor': 5,
+                'tienda': 5,
+                'num-tienda': 5,
+                'proyecto': 5,
+                'ano': 3,
+                'mes': 12
             };
             
-            // Get the corresponding filter key for the current view type
-            const filterKey = filterMapping[viewType];
+            return totalOptions[filterType] || 0;
+        }
+        
+        function matchDataItemToFilter(dataItem, filterValue, viewType) {
+            const normalizedItemName = dataItem.name.toLowerCase();
+            const normalizedFilterValue = filterValue.toLowerCase();
             
-            if (!filterKey || !filterSelections[filterKey]) {
-                return data; // No relevant filter or no selections for this view type
+            // First try direct mapping
+            if (mapDataToFilter(dataItem.name, filterValue, viewType)) {
+                return true;
             }
             
-            const selectedValues = filterSelections[filterKey];
-            
-            // If all options are selected, return original data
-            if (!selectedValues || selectedValues.length === 0) {
-                return data;
-            }
-            
-            // Filter data based on selected values
-            // This is a simplified approach - in a real scenario, you'd have more sophisticated mapping
-            return data.filter(item => {
-                // For demonstration, we'll filter based on partial name matching
-                // In a real implementation, you'd have proper data relationships
-                return selectedValues.some(selectedValue => {
-                    const normalizedItemName = item.name.toLowerCase();
-                    const normalizedSelectedValue = selectedValue.toLowerCase();
-                    
-                    // Check for partial matches or specific mappings
-                    return normalizedItemName.includes(normalizedSelectedValue) || 
-                           normalizedSelectedValue.includes(normalizedItemName) ||
-                           mapDataToFilter(item.name, selectedValue, viewType);
-                });
-            });
+            // Then try partial matching
+            return normalizedItemName.includes(normalizedFilterValue) || 
+                   normalizedFilterValue.includes(normalizedItemName);
         }
         
         function mapDataToFilter(dataName, filterValue, viewType) {
@@ -4841,8 +4859,8 @@
             drawBarChart(ctx, canvas, proyectoData, 'Proyectos');
         }
 
-        function drawPosicionChart(viewType = null) {
-            drawUnifiedChart('posicion', viewType);
+        function drawPosicionChart(viewType = null, filterSelections = null) {
+            drawUnifiedChart('posicion', viewType, filterSelections);
         }
         
         function drawPosicionLineChart(ctx, canvas, compliance, target, months) {
@@ -4952,8 +4970,8 @@
             }
         }
 
-        function drawAdyacenciaChart(viewType = null) {
-            drawUnifiedChart('adyacencia', viewType);
+        function drawAdyacenciaChart(viewType = null, filterSelections = null) {
+            drawUnifiedChart('adyacencia', viewType, filterSelections);
         }
         
         function drawAdyacenciaLineChart(ctx, canvas, compliance, target, months) {
@@ -5063,8 +5081,8 @@
             }
         }
 
-        function drawCajillasChart(viewType = null) {
-            drawUnifiedChart('cajillas', viewType);
+        function drawCajillasChart(viewType = null, filterSelections = null) {
+            drawUnifiedChart('cajillas', viewType, filterSelections);
         }
         
         function drawCajillasLineChart(ctx, canvas, compliance, target, months) {
@@ -5174,8 +5192,8 @@
             }
         }
 
-        function drawAdyacenciaBloqueChart(viewType = null) {
-            drawUnifiedChart('adyacenciaBloque', viewType);
+        function drawAdyacenciaBloqueChart(viewType = null, filterSelections = null) {
+            drawUnifiedChart('adyacenciaBloque', viewType, filterSelections);
         }
         
         function drawAdyacenciaBloqueLineChart(ctx, canvas, compliance, target, months) {
@@ -5285,8 +5303,8 @@
             }
         }
 
-        function drawPresenciaChart(viewType = null) {
-            drawUnifiedChart('presencia', viewType);
+        function drawPresenciaChart(viewType = null, filterSelections = null) {
+            drawUnifiedChart('presencia', viewType, filterSelections);
         }
 
         // Function to clear all filters
@@ -5567,25 +5585,28 @@
             
             if (!chartId) return;
             
+            // Get current filter selections
+            const filterSelections = getAllFilterSelections();
+            
             // Call the appropriate chart function based on chart ID
             switch(chartId) {
                 case 'chart1':
-                    drawTendencialChart(selectedView);
+                    drawTendencialChart(selectedView, filterSelections);
                     break;
                 case 'chart2':
-                    drawPosicionChart(selectedView);
+                    drawPosicionChart(selectedView, filterSelections);
                     break;
                 case 'chart3':
-                    drawAdyacenciaChart(selectedView);
+                    drawAdyacenciaChart(selectedView, filterSelections);
                     break;
                 case 'chart4':
-                    drawCajillasChart(selectedView);
+                    drawCajillasChart(selectedView, filterSelections);
                     break;
                 case 'chart5':
-                    drawAdyacenciaBloqueChart(selectedView);
+                    drawAdyacenciaBloqueChart(selectedView, filterSelections);
                     break;
                 case 'chart6':
-                    drawPresenciaChart(selectedView);
+                    drawPresenciaChart(selectedView, filterSelections);
                     break;
             }
         }
