@@ -635,6 +635,7 @@
 
         .bloque-content {
             display: flex;
+            flex-direction: column;
             padding: 24px;
             gap: 24px;
             background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
@@ -1110,7 +1111,6 @@
     </style>
 </head>
 <body>
-    <div class="header">
         <!-- Power BI Header -->
         <div class="powerbi-header">
             <div class="powerbi-brand">
@@ -1159,16 +1159,16 @@
                 <label class="filter-label">Año</label>
                 <div class="filter-select" data-filter="ano">
                     <button class="dropdown-button" type="button">
-                        <span class="selected-text">Todos</span>
-                        <span class="selected-count">(3)</span>
+                        <span class="selected-text">2025</span>
+                        <span class="selected-count">(1)</span>
                     </button>
                     <div class="dropdown-content">
-                        <div class="dropdown-option selected" data-value="2023">
-                            <input type="checkbox" class="dropdown-checkbox" value="2023" checked>
+                        <div class="dropdown-option" data-value="2023">
+                            <input type="checkbox" class="dropdown-checkbox" value="2023">
                             <span>2023</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="2024">
-                            <input type="checkbox" class="dropdown-checkbox" value="2024" checked>
+                        <div class="dropdown-option" data-value="2024">
+                            <input type="checkbox" class="dropdown-checkbox" value="2024">
                             <span>2024</span>
                         </div>
                         <div class="dropdown-option selected" data-value="2025">
@@ -1183,56 +1183,56 @@
                 <label class="filter-label">Mes</label>
                 <div class="filter-select" data-filter="mes">
                     <button class="dropdown-button" type="button">
-                        <span class="selected-text">Todos</span>
-                        <span class="selected-count">(12)</span>
+                        <span class="selected-text">Julio</span>
+                        <span class="selected-count">(1)</span>
                     </button>
                     <div class="dropdown-content">
-                        <div class="dropdown-option selected" data-value="enero">
-                            <input type="checkbox" class="dropdown-checkbox" value="enero" checked>
+                        <div class="dropdown-option" data-value="enero">
+                            <input type="checkbox" class="dropdown-checkbox" value="enero">
                             <span>Enero</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="febrero">
-                            <input type="checkbox" class="dropdown-checkbox" value="febrero" checked>
+                        <div class="dropdown-option" data-value="febrero">
+                            <input type="checkbox" class="dropdown-checkbox" value="febrero">
                             <span>Febrero</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="marzo">
-                            <input type="checkbox" class="dropdown-checkbox" value="marzo" checked>
+                        <div class="dropdown-option" data-value="marzo">
+                            <input type="checkbox" class="dropdown-checkbox" value="marzo">
                             <span>Marzo</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="abril">
-                            <input type="checkbox" class="dropdown-checkbox" value="abril" checked>
+                        <div class="dropdown-option" data-value="abril">
+                            <input type="checkbox" class="dropdown-checkbox" value="abril">
                             <span>Abril</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="mayo">
-                            <input type="checkbox" class="dropdown-checkbox" value="mayo" checked>
+                        <div class="dropdown-option" data-value="mayo">
+                            <input type="checkbox" class="dropdown-checkbox" value="mayo">
                             <span>Mayo</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="junio">
-                            <input type="checkbox" class="dropdown-checkbox" value="junio" checked>
+                        <div class="dropdown-option" data-value="junio">
+                            <input type="checkbox" class="dropdown-checkbox" value="junio">
                             <span>Junio</span>
                         </div>
                         <div class="dropdown-option selected" data-value="julio">
                             <input type="checkbox" class="dropdown-checkbox" value="julio" checked>
                             <span>Julio</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="agosto">
-                            <input type="checkbox" class="dropdown-checkbox" value="agosto" checked>
+                        <div class="dropdown-option" data-value="agosto">
+                            <input type="checkbox" class="dropdown-checkbox" value="agosto">
                             <span>Agosto</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="septiembre">
-                            <input type="checkbox" class="dropdown-checkbox" value="septiembre" checked>
+                        <div class="dropdown-option" data-value="septiembre">
+                            <input type="checkbox" class="dropdown-checkbox" value="septiembre">
                             <span>Septiembre</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="octubre">
-                            <input type="checkbox" class="dropdown-checkbox" value="octubre" checked>
+                        <div class="dropdown-option" data-value="octubre">
+                            <input type="checkbox" class="dropdown-checkbox" value="octubre">
                             <span>Octubre</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="noviembre">
-                            <input type="checkbox" class="dropdown-checkbox" value="noviembre" checked>
+                        <div class="dropdown-option" data-value="noviembre">
+                            <input type="checkbox" class="dropdown-checkbox" value="noviembre">
                             <span>Noviembre</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="diciembre">
-                            <input type="checkbox" class="dropdown-checkbox" value="diciembre" checked>
+                        <div class="dropdown-option" data-value="diciembre">
+                            <input type="checkbox" class="dropdown-checkbox" value="diciembre">
                             <span>Diciembre</span>
                         </div>
                     </div>
@@ -1545,7 +1545,35 @@
                 <div class="bloque-content">
                     <!-- Default Line Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title">Tendencial Anual Bloque - Vista General</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <!-- Planogram Tools Image -->
+                            <div class="planogram-tools-container" style="text-align: center; margin: 10px 0;">
+                                <img src="images/bloque.png" alt="Planogram Tools" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            </div>
+                            <div class="chart-title">Tendencial Anual Bloque - Vista General</div>
+                        </div>
                         <div class="chart-legend">
                             <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
                             <span class="legend-item"><span class="legend-dot target"></span>Target</span>
@@ -1557,7 +1585,31 @@
 
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="chartTitle">Tendencial Anual Bloque - Vista de Análisis</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <div class="chart-title" id="chartTitle">Tendencial Anual Bloque - Vista de Análisis</div>
+                        </div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
@@ -1582,42 +1634,6 @@
                         </div>
                         <div class="chart-area" id="chartArea">
                             <canvas id="dynamicChart" width="800" height="300"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Bloque Image -->
-                    <div class="bloque-image">
-                        <div class="image-placeholder">
-                            <div class="warehouse-visual">
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1765,7 +1781,35 @@
                 <div class="bloque-content">
                     <!-- Default Line Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title">Tendencial Anual Posición de anaquel - Vista General</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <!-- Planogram Tools Image -->
+                            <div class="planogram-tools-container" style="text-align: center; margin: 10px 0;">
+                                <img src="images/posicion de anaquel.png" alt="Planogram Posición de Anaquel" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            </div>
+                            <div class="chart-title">Tendencial Anual Posición de anaquel - Vista General</div>
+                        </div>
                         <div class="chart-legend">
                             <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
                             <span class="legend-item"><span class="legend-dot target"></span>Target</span>
@@ -1777,7 +1821,31 @@
 
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="posicionChartTitle">Tendencial Anual Posición de anaquel - Vista de Análisis</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <div class="chart-title" id="posicionChartTitle">Tendencial Anual Posición de anaquel - Vista de Análisis</div>
+                        </div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
@@ -1805,41 +1873,6 @@
                         </div>
                     </div>
 
-                    <!-- Posición Image -->
-                    <div class="bloque-image">
-                        <div class="image-placeholder">
-                            <div class="warehouse-visual">
-                                <div class="shelf-row">
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item purple"></div>
-                                    <div class="shelf-item purple"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Posición Data Table -->
@@ -1985,7 +2018,35 @@
                 <div class="bloque-content">
                     <!-- Default Line Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title">Tendencial Anual Adyacencia - Vista General</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <!-- Planogram Tools Image -->
+                            <div class="planogram-tools-container" style="text-align: center; margin: 10px 0;">
+                                <img src="images/adyacencia.png" alt="Planogram Tools" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            </div>
+                            <div class="chart-title">Tendencial Anual Adyacencia - Vista General</div>
+                        </div>
                         <div class="chart-legend">
                             <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
                             <span class="legend-item"><span class="legend-dot target"></span>Target</span>
@@ -1997,7 +2058,31 @@
 
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="adyacenciaChartTitle">Tendencial Anual Adyacencia - Vista de Análisis</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <div class="chart-title" id="adyacenciaChartTitle">Tendencial Anual Adyacencia - Vista de Análisis</div>
+                        </div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
@@ -2025,41 +2110,7 @@
                         </div>
                     </div>
 
-                    <!-- Adyacencia Image -->
-                    <div class="bloque-image">
-                        <div class="image-placeholder">
-                            <div class="warehouse-visual">
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item purple"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <!-- Adyacencia Data Table -->
@@ -2135,7 +2186,34 @@
                 <div class="bloque-content">
                     <!-- Default Line Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title">Tendencial Anual Cajillas - Vista General</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <div class="planogram-tools-container" style="text-align: center; margin: 10px 0;">
+                                <img src="images/cajillas.png" alt="Planogram Tools" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            </div>
+                            <div class="chart-title">Tendencial Anual Cajillas - Vista General</div>
+                        </div>
                         <div class="chart-legend">
                             <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
                             <span class="legend-item"><span class="legend-dot target"></span>Target</span>
@@ -2147,7 +2225,31 @@
 
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="cajillasChartTitle">Tendencial Anual Cajillas - Vista de Análisis</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                            <div class="chart-title" id="cajillasChartTitle">Tendencial Anual Cajillas - Vista de Análisis</div>
+                        </div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
@@ -2175,41 +2277,6 @@
                         </div>
                     </div>
 
-                    <!-- Cajillas Image -->
-                    <div class="bloque-image">
-                        <div class="image-placeholder">
-                            <div class="warehouse-visual">
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Cajillas Data Table -->
@@ -2285,7 +2352,35 @@
                 <div class="bloque-content">
                     <!-- Default Line Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title">Tendencial Anual Adyacencia bloque - Vista General</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                                    <!-- Planogram Tools Image -->
+                                    <div class="planogram-tools-container" style="text-align: center; margin: 10px 0;">
+                                        <img src="images/adyacencia bloque.png" alt="Planogram Tools" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                    </div>
+                            <div class="chart-title">Tendencial Anual Adyacencia bloque - Vista General</div>
+                        </div>
                         <div class="chart-legend">
                             <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
                             <span class="legend-item"><span class="legend-dot target"></span>Target</span>
@@ -2297,7 +2392,32 @@
 
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="adyacenciaBloqueChartTitle">Tendencial Anual Adyacencia bloque - Vista de Análisis</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                                <div class="planogram-cell"></div>
+                            </div>
+                                                
+                            <div class="chart-title" id="adyacenciaBloqueChartTitle">Tendencial Anual Adyacencia bloque - Vista de Análisis</div>
+                        </div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
@@ -2322,42 +2442,6 @@
                         </div>
                         <div class="chart-area" id="adyacenciaBloqueChartArea">
                             <canvas id="adyacenciaBloqueChart" width="800" height="300"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Adyacencia bloque Image -->
-                    <div class="bloque-image">
-                        <div class="image-placeholder">
-                            <div class="warehouse-visual">
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -2435,7 +2519,36 @@
                 <div class="bloque-content">
                     <!-- Default Line Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title">Tendencial Anual % Presencia en charolas - Vista General</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell secondary"></div>
+                                <div class="planogram-cell secondary"></div>
+                                <div class="planogram-cell secondary"></div>
+                                <div class="planogram-cell secondary"></div>
+                            </div>
+
+                                                        <!-- Planogram Tools Image -->
+                                                        <div class="planogram-tools-container" style="text-align: center; margin: 10px 0;">
+                                                            <img src="images/charolas.png" alt="Planogram Tools" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                                        </div>
+                            <div class="chart-title">Tendencial Anual % Presencia en charolas - Vista General</div>
+                        </div>
                         <div class="chart-legend">
                             <span class="legend-item"><span class="legend-dot compliance"></span>Compliance</span>
                             <span class="legend-item"><span class="legend-dot target"></span>Target</span>
@@ -2447,7 +2560,32 @@
 
                     <!-- Dynamic Chart -->
                     <div class="tendencial-chart">
-                        <div class="chart-title" id="presenciaChartTitle">Tendencial Anual % Presencia en charolas - Vista de Análisis</div>
+                        <div class="chart-header">
+                            <div class="planogram-grid">
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell highlighted"></div>
+                                <div class="planogram-cell secondary"></div>
+                                <div class="planogram-cell secondary"></div>
+                                <div class="planogram-cell secondary"></div>
+                                <div class="planogram-cell secondary"></div>
+                            </div>
+
+                            <div class="chart-title" id="presenciaChartTitle">Tendencial Anual % Presencia en charolas - Vista de Análisis</div>
+                        </div>
                         
                         <!-- Individual Vista de Análisis for this chart -->
                         <div class="filter-group" style="margin: 10px 0; max-width: 200px;">
@@ -2479,41 +2617,6 @@
                         </div>
                     </div>
 
-                    <!-- % Presencia en charolas Image -->
-                    <div class="bloque-image">
-                        <div class="image-placeholder">
-                            <div class="warehouse-visual">
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item highlighted"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                                <div class="shelf-row">
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                    <div class="shelf-item"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- % Presencia en charolas Data Table -->
@@ -2855,21 +2958,16 @@
             initializeDropdowns();
                 initializeVistaDropdowns();
                 
-            // Draw default line charts (always show these)
+            // Initialize chart titles with BU view
+            updateAllCharts('bu');
+            
+            // Initialize default charts
             drawDefaultChart1();
             drawDefaultChart2();
             drawDefaultChart3();
             drawDefaultChart4();
             drawDefaultChart5();
             drawDefaultChart6();
-                
-            // Draw dynamic charts with default BU view
-            drawTendencialChart('bu');
-            drawPosicionChart('bu');
-            drawAdyacenciaChart('bu');
-            drawCajillasChart('bu');
-            drawAdyacenciaBloqueChart('bu');
-            drawPresenciaChart('bu');
                 
 
 
@@ -3043,12 +3141,99 @@
             }
         };
 
-                // Unified chart drawing function
-        function drawTendencialChart(viewType = null, filterSelections = null) {
-            drawUnifiedChart('tendencial', viewType, filterSelections);
+        // Default chart configurations for static "Vista General" charts
+        const DEFAULT_CHART_CONFIGS = {
+            defaultChart1: {
+                canvasId: 'defaultChart1',
+                title: 'Tendencial Anual Bloque - Vista General',
+                labels: ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'],
+                compliance: [41, 41, 45, 40, 35, 34, 63],
+                target: [65, 65, 65, 65, 65, 65, 65],
+                dataUnit: '% Performance'
+            },
+            defaultChart2: {
+                canvasId: 'defaultChart2',
+                title: 'Tendencial Anual Posición de anaquel - Vista General',
+                labels: ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'],
+                compliance: [65, 62, 58, 61, 59, 52, 62],
+                target: [70, 70, 70, 70, 70, 70, 70],
+                dataUnit: '% Position Performance'
+            },
+            defaultChart3: {
+                canvasId: 'defaultChart3',
+                title: 'Tendencial Anual Adyacencia - Vista General',
+                labels: ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'],
+                compliance: [78, 72, 75, 79, 76, 73, 75],
+                target: [80, 80, 80, 80, 80, 80, 80],
+                dataUnit: '% Adyacencia Performance'
+            },
+            defaultChart4: {
+                canvasId: 'defaultChart4',
+                title: 'Tendencial Anual Cajillas - Vista General',
+                labels: ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'],
+                compliance: [65, 70, 68, 72, 66, 63, 68],
+                target: [75, 75, 75, 75, 75, 75, 75],
+                dataUnit: '% Cajillas Performance'
+            },
+            defaultChart5: {
+                canvasId: 'defaultChart5',
+                title: 'Tendencial Anual Adyacencia bloque - Vista General',
+                labels: ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'],
+                compliance: [85, 82, 79, 83, 81, 78, 81],
+                target: [85, 85, 85, 85, 85, 85, 85],
+                dataUnit: '% Adyacencia Bloque Performance'
+            },
+            defaultChart6: {
+                canvasId: 'defaultChart6',
+                title: 'Tendencial Anual % Presencia en charolas - Vista General',
+                labels: ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'],
+                compliance: [94, 91, 89, 93, 92, 88, 92],
+                target: [90, 90, 90, 90, 90, 90, 90],
+                dataUnit: '% Presencia Performance'
+            }
+        };
+
+        // Default chart drawing functions
+        function drawDefaultChart(chartKey) {
+            const config = DEFAULT_CHART_CONFIGS[chartKey];
+            if (!config) {
+                console.error('Default chart configuration not found for:', chartKey);
+                return;
+            }
+
+            const canvas = document.getElementById(config.canvasId);
+            if (!canvas) {
+                console.error('Canvas not found:', config.canvasId);
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+            
+            // Force browser to recalculate canvas dimensions
+            canvas.style.display = 'none';
+            canvas.offsetHeight; // Trigger reflow
+            canvas.style.display = '';
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw default line chart with the configuration data
+            drawUnifiedLineChart(ctx, canvas, config);
         }
 
-        function drawUnifiedChart(chartKey, viewType = null, filterSelections = null) {
+        function drawDefaultChart1() { drawDefaultChart('defaultChart1'); }
+        function drawDefaultChart2() { drawDefaultChart('defaultChart2'); }
+        function drawDefaultChart3() { drawDefaultChart('defaultChart3'); }
+        function drawDefaultChart4() { drawDefaultChart('defaultChart4'); }
+        function drawDefaultChart5() { drawDefaultChart('defaultChart5'); }
+        function drawDefaultChart6() { drawDefaultChart('defaultChart6'); }
+
+                // Unified chart drawing function
+        function drawTendencialChart(viewType = null) {
+            drawUnifiedChart('tendencial', viewType);
+        }
+
+        function drawUnifiedChart(chartKey, viewType = null) {
 
             
             const config = CHART_CONFIGS[chartKey];
@@ -3088,14 +3273,14 @@
                 
                 switch(chartType) {
                     case 'line':
-                        drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType, filterSelections);
+                        drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType);
                         break;
                     case 'vertical-bar':
-                        drawVerticalBarChart(ctx, canvas, config, chartKey, viewType, filterSelections);
+                        drawVerticalBarChart(ctx, canvas, config, chartKey, viewType);
                         break;
                     case 'bar':
                     default:
-                        drawCategoryBarChart(ctx, canvas, config, chartKey, viewType, filterSelections);
+                        drawCategoryBarChart(ctx, canvas, config, chartKey, viewType);
                         break;
                 }
             } else {
@@ -3220,12 +3405,12 @@
             }
         }
 
-        function drawCategoryBarChart(ctx, canvas, config, chartKey, viewType = 'categoria', filterSelections = null) {
+        function drawCategoryBarChart(ctx, canvas, config, chartKey, viewType = 'categoria') {
             const width = canvas.width;
             const height = canvas.height;
             
             // Get analysis data based on selected view type with validation
-            const categoryData = getAnalysisData(chartKey, viewType, filterSelections);
+            const categoryData = getAnalysisData(chartKey, viewType);
             
             if (!categoryData || !Array.isArray(categoryData) || categoryData.length === 0) {
                 // Draw error message on canvas
@@ -3341,7 +3526,7 @@
             return { name, value, percentage: value };
         }
         
-        function getAnalysisData(chartKey, viewType, filterSelections = null) {
+        function getAnalysisData(chartKey, viewType) {
             // Optimized data structure - reduce memory usage and redundancy
             const analysisDataSets = {
                 // BU Analysis - Business Units
@@ -3745,130 +3930,13 @@
             
             // Get the data for the specific view type and chart
             const viewData = analysisDataSets[viewType];
-            let data;
             
             if (viewData && viewData[chartKey]) {
-                data = viewData[chartKey];
-            } else {
-                // Fallback to categoria data if specific combination doesn't exist
-                data = analysisDataSets.categoria.tendencial;
+                return viewData[chartKey];
             }
             
-            // Apply filters if provided
-            if (filterSelections && data) {
-                data = applyFiltersToData(data, filterSelections, viewType);
-            }
-            
-            return data;
-        }
-        
-        function applyFiltersToData(data, filterSelections, viewType) {
-            if (!data || !Array.isArray(data) || !filterSelections) {
-                return data;
-            }
-            
-            // If this is a view type that should be filtered, apply the corresponding filter
-            const viewTypeFilters = ['categoria', 'cadena', 'tienda', 'num-tienda', 'formato', 'bu', 'divisional', 'asesor', 'proyecto'];
-            
-            if (viewTypeFilters.includes(viewType)) {
-                const selectedValues = filterSelections[viewType];
-                
-                // If no values are selected for this filter, or all values are selected, don't filter
-                if (!selectedValues || selectedValues.length === 0) {
-                    return data;
-                }
-                
-                // Check if all available options for this filter type are selected
-                const totalOptionsForFilter = getTotalOptionsForFilter(viewType);
-                if (selectedValues.length >= totalOptionsForFilter) {
-                    return data; // All options selected, no need to filter
-                }
-                
-                // Filter data based on selected values
-                return data.filter(item => {
-                    return selectedValues.some(selectedValue => {
-                        return matchDataItemToFilter(item, selectedValue, viewType);
-                    });
-                });
-            }
-            
-            // For non-filterable view types, return data as-is
-            return data;
-        }
-        
-        function getTotalOptionsForFilter(filterType) {
-            // Return the total number of options available for each filter type
-            const totalOptions = {
-                'bu': 5,
-                'categoria': 4,
-                'cadena': 8,
-                'formato': 5,
-                'divisional': 4,
-                'asesor': 5,
-                'tienda': 5,
-                'num-tienda': 5,
-                'proyecto': 5,
-                'ano': 3,
-                'mes': 12
-            };
-            
-            return totalOptions[filterType] || 0;
-        }
-        
-        function matchDataItemToFilter(dataItem, filterValue, viewType) {
-            const normalizedItemName = dataItem.name.toLowerCase();
-            const normalizedFilterValue = filterValue.toLowerCase();
-            
-            // First try direct mapping
-            if (mapDataToFilter(dataItem.name, filterValue, viewType)) {
-                return true;
-            }
-            
-            // Then try partial matching
-            return normalizedItemName.includes(normalizedFilterValue) || 
-                   normalizedFilterValue.includes(normalizedItemName);
-        }
-        
-        function mapDataToFilter(dataName, filterValue, viewType) {
-            // Create specific mappings between data items and filter values
-            const mappings = {
-                // BU mappings
-                'bu': {
-                    'personal-care': ['BU Personal Care', 'Personal Care'],
-                    'home-care': ['BU Home Care', 'Home Care'],
-                    'foods-refreshment': ['BU Foods & Refreshment', 'Foods'],
-                    'beauty-personal-care': ['BU Beauty & Personal Care', 'Beauty'],
-                    'ice-cream': ['BU Ice Cream', 'Ice Cream']
-                },
-                // Category mappings
-                'categoria': {
-                    'categoria1': ['Categoria 1', 'Cat 1'],
-                    'categoria2': ['Categoria 2', 'Cat 2'],
-                    'categoria3': ['Categoria 3', 'Cat 3'],
-                    'categoria4': ['Categoria 4', 'Cat 4']
-                },
-                // Chain mappings
-                'cadena': {
-                    'walmart': ['Walmart', 'Walmart México'],
-                    'soriana': ['Soriana'],
-                    'oxxo': ['OXXO'],
-                    'chedraui': ['Chedraui'],
-                    'heb': ['HEB', 'HEB México'],
-                    'aurrera': ['Aurrera'],
-                    'liverpool': ['Liverpool'],
-                    'costco': ['Costco', 'Costco México']
-                }
-                // Add more mappings as needed
-            };
-            
-            const viewMappings = mappings[viewType];
-            if (!viewMappings || !viewMappings[filterValue]) {
-                return false;
-            }
-            
-            return viewMappings[filterValue].some(mappedName => 
-                dataName.toLowerCase().includes(mappedName.toLowerCase())
-            );
+            // Fallback to categoria data if specific combination doesn't exist
+            return analysisDataSets.categoria.tendencial;
         }
         
         function getChartTypeForView(viewType) {
@@ -3877,11 +3945,11 @@
                 // Business Units: Line chart shows performance trends over time - best for strategic overview
                 'bu': 'line',
                 
-                // Categories: Vertical bars show clear category comparison with readable labels
-                'categoria': 'vertical-bar',
+                // Categories: Horizontal bars show clear category comparison with readable labels
+                'categoria': 'bar',
                 
-                // Retail Chains: Vertical bars work best for comparing performance across chains
-                'cadena': 'vertical-bar',
+                // Retail Chains: Horizontal bars work best for comparing performance across chains
+                'cadena': 'bar',
                 
                 // Store Formats: Vertical bars show format hierarchy and performance nicely
                 'formato': 'vertical-bar',
@@ -3892,11 +3960,11 @@
                 // Sales Representatives: Vertical bars allow easy performance comparison between reps
                 'asesor': 'vertical-bar',
                 
-                // Individual Stores: Vertical bars work better for store names
-                'tienda': 'vertical-bar',
+                // Individual Stores: Horizontal bars work better for store names (often long)
+                'tienda': 'bar',
                 
-                // Store Numbers: Vertical bars work well for numeric store IDs
-                'num-tienda': 'vertical-bar',
+                // Store Numbers: Horizontal bars work well for numeric store IDs
+                'num-tienda': 'bar',
                 
                 // Marketing Campaigns: Line chart shows campaign effectiveness over time
                 'proyecto': 'line'
@@ -3905,12 +3973,12 @@
             return chartTypeLogic[viewType] || 'bar';
         }
 
-        function drawVerticalBarChart(ctx, canvas, config, chartKey, viewType = 'categoria', filterSelections = null) {
+        function drawVerticalBarChart(ctx, canvas, config, chartKey, viewType = 'categoria') {
             const width = canvas.width;
             const height = canvas.height;
             
             // Get analysis data based on selected view type
-            const categoryData = getAnalysisData(chartKey, viewType, filterSelections);
+            const categoryData = getAnalysisData(chartKey, viewType);
             
             // Chart dimensions
             const margin = { top: 20, right: 40, bottom: 100, left: 60 };
@@ -4009,12 +4077,12 @@
             ctx.stroke();
         }
 
-        function drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType, filterSelections = null) {
+        function drawAnalysisLineChart(ctx, canvas, config, chartKey, viewType) {
             const width = canvas.width;
             const height = canvas.height;
             
             // Get analysis data with validation
-            const analysisData = getAnalysisData(chartKey, viewType, filterSelections);
+            const analysisData = getAnalysisData(chartKey, viewType);
             
             if (!analysisData) {
                 // Draw error message on canvas
@@ -4940,8 +5008,8 @@
             drawBarChart(ctx, canvas, proyectoData, 'Proyectos');
         }
 
-        function drawPosicionChart(viewType = null, filterSelections = null) {
-            drawUnifiedChart('posicion', viewType, filterSelections);
+        function drawPosicionChart(viewType = null) {
+            drawUnifiedChart('posicion', viewType);
         }
         
         function drawPosicionLineChart(ctx, canvas, compliance, target, months) {
@@ -5051,8 +5119,8 @@
             }
         }
 
-        function drawAdyacenciaChart(viewType = null, filterSelections = null) {
-            drawUnifiedChart('adyacencia', viewType, filterSelections);
+        function drawAdyacenciaChart(viewType = null) {
+            drawUnifiedChart('adyacencia', viewType);
         }
         
         function drawAdyacenciaLineChart(ctx, canvas, compliance, target, months) {
@@ -5162,8 +5230,8 @@
             }
         }
 
-        function drawCajillasChart(viewType = null, filterSelections = null) {
-            drawUnifiedChart('cajillas', viewType, filterSelections);
+        function drawCajillasChart(viewType = null) {
+            drawUnifiedChart('cajillas', viewType);
         }
         
         function drawCajillasLineChart(ctx, canvas, compliance, target, months) {
@@ -5273,8 +5341,8 @@
             }
         }
 
-        function drawAdyacenciaBloqueChart(viewType = null, filterSelections = null) {
-            drawUnifiedChart('adyacenciaBloque', viewType, filterSelections);
+        function drawAdyacenciaBloqueChart(viewType = null) {
+            drawUnifiedChart('adyacenciaBloque', viewType);
         }
         
         function drawAdyacenciaBloqueLineChart(ctx, canvas, compliance, target, months) {
@@ -5384,168 +5452,8 @@
             }
         }
 
-        function drawPresenciaChart(viewType = null, filterSelections = null) {
-            drawUnifiedChart('presencia', viewType, filterSelections);
-        }
-
-        // Default chart drawing functions (always show line charts without vista analysis)
-        function drawDefaultChart1() {
-            const canvas = document.getElementById('defaultChart1');
-            if (!canvas) return;
-            
-            const config = CHART_CONFIGS['tendencial'];
-            drawDefaultLineChart(canvas, config, 'Bloque');
-        }
-
-        function drawDefaultChart2() {
-            const canvas = document.getElementById('defaultChart2');
-            if (!canvas) return;
-            
-            const config = CHART_CONFIGS['posicion'];
-            drawDefaultLineChart(canvas, config, 'Posición de anaquel');
-        }
-
-        function drawDefaultChart3() {
-            const canvas = document.getElementById('defaultChart3');
-            if (!canvas) return;
-            
-            const config = CHART_CONFIGS['adyacencia'];
-            drawDefaultLineChart(canvas, config, 'Adyacencia');
-        }
-
-        function drawDefaultChart4() {
-            const canvas = document.getElementById('defaultChart4');
-            if (!canvas) return;
-            
-            const config = CHART_CONFIGS['cajillas'];
-            drawDefaultLineChart(canvas, config, 'Cajillas');
-        }
-
-        function drawDefaultChart5() {
-            const canvas = document.getElementById('defaultChart5');
-            if (!canvas) return;
-            
-            const config = CHART_CONFIGS['adyacenciaBloque'];
-            drawDefaultLineChart(canvas, config, 'Adyacencia bloque');
-        }
-
-        function drawDefaultChart6() {
-            const canvas = document.getElementById('defaultChart6');
-            if (!canvas) return;
-            
-            const config = CHART_CONFIGS['presencia'];
-            drawDefaultLineChart(canvas, config, '% Presencia en charolas');
-        }
-
-        function drawDefaultLineChart(canvas, config, chartType) {
-            if (!canvas || !config) return;
-            
-            const ctx = canvas.getContext('2d');
-            const width = canvas.width;
-            const height = canvas.height;
-            
-            // Clear canvas
-            ctx.clearRect(0, 0, width, height);
-            ctx.resetTransform();
-            ctx.save();
-            
-            // Chart dimensions
-            const margin = { top: 20, right: 40, bottom: 60, left: 60 };
-            const chartWidth = width - margin.left - margin.right;
-            const chartHeight = height - margin.top - margin.bottom;
-            
-            // Data (fixed line chart data like the image shown)
-            const labels = ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024', 'Jun 2024', 'Jul 2024'];
-            const complianceData = [41, 41, 45, 40, 35, 34, 63];
-            const targetData = [65, 65, 65, 65, 65, 65, 65];
-            
-            // Scales
-            const xScale = chartWidth / (labels.length - 1);
-            const maxY = Math.max(...complianceData, ...targetData) + 10;
-            const minY = 0;
-            const yScale = chartHeight / (maxY - minY);
-            
-            // Draw grid lines
-            ctx.strokeStyle = '#e5e5e5';
-            ctx.lineWidth = 1;
-            
-            // Horizontal grid lines
-            for (let y = minY; y <= maxY; y += 10) {
-                const yPos = margin.top + chartHeight - (y - minY) * yScale;
-                ctx.beginPath();
-                ctx.moveTo(margin.left, yPos);
-                ctx.lineTo(margin.left + chartWidth, yPos);
-                ctx.stroke();
-            }
-            
-            // Y-axis labels
-            ctx.fillStyle = '#666';
-            ctx.font = '12px Arial';
-            ctx.textAlign = 'right';
-            for (let y = minY; y <= maxY; y += 10) {
-                const yPos = margin.top + chartHeight - (y - minY) * yScale;
-                ctx.fillText(y + '%', margin.left - 10, yPos + 4);
-            }
-            
-            // X-axis labels
-            ctx.textAlign = 'center';
-            labels.forEach((label, i) => {
-                const x = margin.left + i * xScale;
-                ctx.fillText(label, x, height - margin.bottom + 20);
-            });
-            
-            // Draw target line (dotted)
-            ctx.strokeStyle = '#8B4513';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([5, 5]);
-            ctx.beginPath();
-            targetData.forEach((value, i) => {
-                const x = margin.left + i * xScale;
-                const y = margin.top + chartHeight - (value - minY) * yScale;
-                if (i === 0) {
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
-            });
-            ctx.stroke();
-            
-            // Draw compliance line (solid)
-            ctx.strokeStyle = '#FF9800';
-            ctx.lineWidth = 3;
-            ctx.setLineDash([]);
-            ctx.beginPath();
-            complianceData.forEach((value, i) => {
-                const x = margin.left + i * xScale;
-                const y = margin.top + chartHeight - (value - minY) * yScale;
-                if (i === 0) {
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
-            });
-            ctx.stroke();
-            
-            // Draw data points and values for compliance line
-            ctx.fillStyle = '#FF9800';
-            complianceData.forEach((value, i) => {
-                const x = margin.left + i * xScale;
-                const y = margin.top + chartHeight - (value - minY) * yScale;
-                
-                // Draw point
-                ctx.beginPath();
-                ctx.arc(x, y, 4, 0, 2 * Math.PI);
-                ctx.fill();
-                
-                // Draw value label
-                ctx.fillStyle = '#FF9800';
-                ctx.font = 'bold 12px Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText(value + '%', x, y - 10);
-                ctx.fillStyle = '#FF9800';
-            });
-            
-            ctx.restore();
+        function drawPresenciaChart(viewType = null) {
+            drawUnifiedChart('presencia', viewType);
         }
 
         // Function to clear all filters
@@ -5596,15 +5504,15 @@
                 }
             });
             
-            // Reset all Vista de Análisis dropdowns to BU (default)
+            // Reset all Vista de Análisis dropdowns
             const viewSelectors = ['chart1ViewSelector', 'chart2ViewSelector', 'chart3ViewSelector', 
                                  'chart4ViewSelector', 'chart5ViewSelector', 'chart6ViewSelector'];
             
             viewSelectors.forEach(selectorId => {
                 const selector = document.getElementById(selectorId);
                 if (selector) {
-                    selector.value = 'bu';
-                    // Trigger change event to redraw charts with BU view
+                    selector.value = '';
+                    // Trigger change event to reset charts
                     const event = new Event('change');
                     selector.dispatchEvent(event);
                 }
@@ -5826,28 +5734,25 @@
             
             if (!chartId) return;
             
-            // Get current filter selections
-            const filterSelections = getAllFilterSelections();
-            
             // Call the appropriate chart function based on chart ID
             switch(chartId) {
                 case 'chart1':
-                    drawTendencialChart(selectedView, filterSelections);
+                    drawTendencialChart(selectedView);
                     break;
                 case 'chart2':
-                    drawPosicionChart(selectedView, filterSelections);
+                    drawPosicionChart(selectedView);
                     break;
                 case 'chart3':
-                    drawAdyacenciaChart(selectedView, filterSelections);
+                    drawAdyacenciaChart(selectedView);
                     break;
                 case 'chart4':
-                    drawCajillasChart(selectedView, filterSelections);
+                    drawCajillasChart(selectedView);
                     break;
                 case 'chart5':
-                    drawAdyacenciaBloqueChart(selectedView, filterSelections);
+                    drawAdyacenciaBloqueChart(selectedView);
                     break;
                 case 'chart6':
-                    drawPresenciaChart(selectedView, filterSelections);
+                    drawPresenciaChart(selectedView);
                     break;
             }
         }
@@ -5986,56 +5891,18 @@
         }
 
         function updateAllChartsWithFilters() {
-            // Get current filter selections
-            const filterSelections = getAllFilterSelections();
-            
-            // Get current vista de análisis selection for each chart (default to 'bu')
-            const chart1View = document.getElementById('chart1ViewSelector')?.value || 'bu';
-            const chart2View = document.getElementById('chart2ViewSelector')?.value || 'bu';
-            const chart3View = document.getElementById('chart3ViewSelector')?.value || 'bu';
-            const chart4View = document.getElementById('chart4ViewSelector')?.value || 'bu';
-            const chart5View = document.getElementById('chart5ViewSelector')?.value || 'bu';
-            const chart6View = document.getElementById('chart6ViewSelector')?.value || 'bu';
-            
+            // Simple approach: just redraw all the basic charts regardless of view
+            // This should work for any view since the charts will adapt
             try {
-                // Redraw default line charts (these don't change with filters)
-                drawDefaultChart1();
-                drawDefaultChart2();
-                drawDefaultChart3();
-                drawDefaultChart4();
-                drawDefaultChart5();
-                drawDefaultChart6();
-                
-                // Redraw dynamic charts with current filter selections
-                drawTendencialChart(chart1View, filterSelections);
-                drawPosicionChart(chart2View, filterSelections);
-                drawAdyacenciaChart(chart3View, filterSelections);
-                drawCajillasChart(chart4View, filterSelections);
-                drawAdyacenciaBloqueChart(chart5View, filterSelections);
-                drawPresenciaChart(chart6View, filterSelections);
+                drawTendencialChart();
+                drawPosicionChart();
+                drawAdyacenciaChart();
+                drawCajillasChart();
+                drawAdyacenciaBloqueChart();
+                drawPresenciaChart();
             } catch (error) {
                 console.error('Error updating charts:', error);
             }
-        }
-
-        function getAllFilterSelections() {
-            const filters = {};
-            
-            // Get all filter dropdowns
-            const filterDropdowns = document.querySelectorAll('.filter-select[data-filter]');
-            
-            filterDropdowns.forEach(dropdown => {
-                const filterType = dropdown.getAttribute('data-filter');
-                const selectedValues = [];
-                
-                dropdown.querySelectorAll('.dropdown-option.selected').forEach(option => {
-                    selectedValues.push(option.getAttribute('data-value'));
-                });
-                
-                filters[filterType] = selectedValues;
-            });
-            
-            return filters;
         }
 
         function toggleDetails(button, category) {
