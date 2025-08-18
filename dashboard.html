@@ -534,19 +534,6 @@
             margin-top: 20px;
         }
 
-        .chart-placeholder {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #605e5c;
-            border: 2px dashed #e5e5e5;
-        }
-
         /* View Selector Styles */
         .view-selector {
             background-color: #ffffff;
@@ -732,52 +719,6 @@
             align-items: center;
             justify-content: center;
             color: #605e5c;
-        }
-
-        .bloque-image {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .target-label {
-            font-size: 0.9rem;
-            color: #605e5c;
-            margin-bottom: 10px;
-            text-align: right;
-            width: 100%;
-        }
-
-        .warehouse-visual {
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
-            background-color: #f8f9fa;
-        }
-
-        .shelf-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .shelf-item {
-            width: 25px;
-            height: 20px;
-            background-color: #ddd;
-            border: 1px solid #bbb;
-            border-radius: 2px;
-        }
-
-        .shelf-item.highlighted {
-            background-color: #2196F3;
-            border-color: #1976D2;
-        }
-
-        .shelf-item.purple {
-            background-color: #8e44ad;
-            border-color: #7d3c98;
         }
 
         /* Data Table Styles */
@@ -1253,10 +1194,7 @@
                             <input type="checkbox" class="dropdown-checkbox" value="beauty-personal-care" checked>
                             <span>BU 4</span>
                         </div>
-                        <div class="dropdown-option selected" data-value="ice-cream">
-                            <input type="checkbox" class="dropdown-checkbox" value="ice-cream" checked>
-                            <span>BU 5</span>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1370,25 +1308,33 @@
                 <div class="filter-select" data-filter="divisional">
                     <button class="dropdown-button" type="button">
                         <span class="selected-text">Todos</span>
-                        <span class="selected-count">(4)</span>
+                        <span class="selected-count">(6)</span>
                     </button>
                     <div class="dropdown-content">
-                                                <div class="dropdown-option selected" data-value="divisional1">
-                            <input type="checkbox" class="dropdown-checkbox" value="divisional1" checked>
-                            <span>Divisional 1</span>
+                        <div class="dropdown-option selected" data-value="valle-mexico">
+                            <input type="checkbox" class="dropdown-checkbox" value="valle-mexico" checked>
+                            <span>Valle de México</span>
                         </div>
-                         <div class="dropdown-option selected" data-value="divisional2">
-                             <input type="checkbox" class="dropdown-checkbox" value="divisional2" checked>
-                             <span>Divisional 2</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="divisional3">
-                             <input type="checkbox" class="dropdown-checkbox" value="divisional3" checked>
-                             <span>Divisional 3</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="divisional4">
-                             <input type="checkbox" class="dropdown-checkbox" value="divisional4" checked>
-                             <span>Divisional 4</span>
-                         </div>
+                        <div class="dropdown-option selected" data-value="noreste">
+                            <input type="checkbox" class="dropdown-checkbox" value="noreste" checked>
+                            <span>Noreste (Nuevo León)</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="occidente">
+                            <input type="checkbox" class="dropdown-checkbox" value="occidente" checked>
+                            <span>Occidente (Jalisco)</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="bajio">
+                            <input type="checkbox" class="dropdown-checkbox" value="bajio" checked>
+                            <span>Bajío (Guanajuato)</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="norte">
+                            <input type="checkbox" class="dropdown-checkbox" value="norte" checked>
+                            <span>Norte (Chihuahua)</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="sureste">
+                            <input type="checkbox" class="dropdown-checkbox" value="sureste" checked>
+                            <span>Sureste (Yucatán)</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1401,22 +1347,26 @@
                         <span class="selected-count">(5)</span>
                     </button>
                     <div class="dropdown-content">
-                                                <div class="dropdown-option selected" data-value="asesor1">
-                            <input type="checkbox" class="dropdown-checkbox" value="asesor1" checked>
-                            <span>Asesor 1</span>
+                        <div class="dropdown-option selected" data-value="carlos-mendoza">
+                            <input type="checkbox" class="dropdown-checkbox" value="carlos-mendoza" checked>
+                            <span>Carlos Mendoza</span>
                         </div>
-                         <div class="dropdown-option selected" data-value="asesor2">
-                             <input type="checkbox" class="dropdown-checkbox" value="asesor2" checked>
-                             <span>Asesor 2</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="asesor3">
-                             <input type="checkbox" class="dropdown-checkbox" value="asesor3" checked>
-                             <span>Asesor 3</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="asesor4">
-                             <input type="checkbox" class="dropdown-checkbox" value="asesor4" checked>
-                             <span>Asesor 4</span>
-                         </div>
+                        <div class="dropdown-option selected" data-value="ana-garcia">
+                            <input type="checkbox" class="dropdown-checkbox" value="ana-garcia" checked>
+                            <span>Ana García</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="luis-rodriguez">
+                            <input type="checkbox" class="dropdown-checkbox" value="luis-rodriguez" checked>
+                            <span>Luis Rodríguez</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="maria-torres">
+                            <input type="checkbox" class="dropdown-checkbox" value="maria-torres" checked>
+                            <span>María Torres</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="jorge-hernandez">
+                            <input type="checkbox" class="dropdown-checkbox" value="jorge-hernandez" checked>
+                            <span>Jorge Hernández</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1429,22 +1379,26 @@
                         <span class="selected-count">(5)</span>
                     </button>
                     <div class="dropdown-content">
-                                                <div class="dropdown-option selected" data-value="tienda1">
-                            <input type="checkbox" class="dropdown-checkbox" value="tienda1" checked>
-                            <span>Tienda 1</span>
+                        <div class="dropdown-option selected" data-value="walmart-polanco">
+                            <input type="checkbox" class="dropdown-checkbox" value="walmart-polanco" checked>
+                            <span>Walmart Polanco</span>
                         </div>
-                         <div class="dropdown-option selected" data-value="tienda2">
-                             <input type="checkbox" class="dropdown-checkbox" value="tienda2" checked>
-                             <span>Tienda 2</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="tienda3">
-                             <input type="checkbox" class="dropdown-checkbox" value="tienda3" checked>
-                             <span>Tienda 3</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="tienda4">
-                             <input type="checkbox" class="dropdown-checkbox" value="tienda4" checked>
-                             <span>Tienda 4</span>
-                         </div>
+                        <div class="dropdown-option selected" data-value="soriana-santa-fe">
+                            <input type="checkbox" class="dropdown-checkbox" value="soriana-santa-fe" checked>
+                            <span>Soriana Santa Fe</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="chedraui-insurgentes">
+                            <input type="checkbox" class="dropdown-checkbox" value="chedraui-insurgentes" checked>
+                            <span>Chedraui Insurgentes</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="heb-monterrey">
+                            <input type="checkbox" class="dropdown-checkbox" value="heb-monterrey" checked>
+                            <span>HEB Monterrey Centro</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="aurrera-doctores">
+                            <input type="checkbox" class="dropdown-checkbox" value="aurrera-doctores" checked>
+                            <span>Aurrera Doctores</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1457,22 +1411,26 @@
                         <span class="selected-count">(5)</span>
                     </button>
                     <div class="dropdown-content">
-                                                <div class="dropdown-option selected" data-value="numtienda1">
-                            <input type="checkbox" class="dropdown-checkbox" value="numtienda1" checked>
-                            <span>Num Tienda 1</span>
+                        <div class="dropdown-option selected" data-value="tienda-2847">
+                            <input type="checkbox" class="dropdown-checkbox" value="tienda-2847" checked>
+                            <span>Tienda #2847</span>
                         </div>
-                         <div class="dropdown-option selected" data-value="numtienda2">
-                             <input type="checkbox" class="dropdown-checkbox" value="numtienda2" checked>
-                             <span>Num Tienda 2</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="numtienda3">
-                             <input type="checkbox" class="dropdown-checkbox" value="numtienda3" checked>
-                             <span>Num Tienda 3</span>
-                         </div>
-                         <div class="dropdown-option selected" data-value="numtienda4">
-                             <input type="checkbox" class="dropdown-checkbox" value="numtienda4" checked>
-                             <span>Num Tienda 4</span>
-                         </div>
+                        <div class="dropdown-option selected" data-value="tienda-1523">
+                            <input type="checkbox" class="dropdown-checkbox" value="tienda-1523" checked>
+                            <span>Tienda #1523</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="tienda-3691">
+                            <input type="checkbox" class="dropdown-checkbox" value="tienda-3691" checked>
+                            <span>Tienda #3691</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="tienda-4125">
+                            <input type="checkbox" class="dropdown-checkbox" value="tienda-4125" checked>
+                            <span>Tienda #4125</span>
+                        </div>
+                        <div class="dropdown-option selected" data-value="tienda-2058">
+                            <input type="checkbox" class="dropdown-checkbox" value="tienda-2058" checked>
+                            <span>Tienda #2058</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3526,42 +3484,36 @@
                         { name: 'BU 2', value: 62.3, percentage: 62.3 },
                         { name: 'BU 3', value: 58.7, percentage: 58.7 },
                         { name: 'BU 4', value: 72.1, percentage: 72.1 },
-                        { name: 'BU 5', value: 45.2, percentage: 45.2 }
                     ],
                     posicion: [
                         { name: 'BU 1', value: 71.2, percentage: 71.2 },
                         { name: 'BU 2', value: 66.8, percentage: 66.8 },
                         { name: 'BU 3', value: 62.4, percentage: 62.4 },
                         { name: 'BU 4', value: 75.6, percentage: 75.6 },
-                        { name: 'BU 5', value: 48.9, percentage: 48.9 }
                     ],
                     adyacencia: [
                         { name: 'BU 1', value: 45.7, percentage: 45.7 },
                         { name: 'BU 2', value: 42.1, percentage: 42.1 },
                         { name: 'BU 3', value: 38.9, percentage: 38.9 },
                         { name: 'BU 4', value: 48.3, percentage: 48.3 },
-                        { name: 'BU 5', value: 35.2, percentage: 35.2 }
                     ],
                     cajillas: [
                         { name: 'BU 1', value: 62.4, percentage: 62.4 },
                         { name: 'BU 2', value: 58.7, percentage: 58.7 },
                         { name: 'BU 3', value: 54.3, percentage: 54.3 },
                         { name: 'BU 4', value: 65.8, percentage: 65.8 },
-                        { name: 'BU 5', value: 41.9, percentage: 41.9 }
                     ],
                     adyacenciaBloque: [
                         { name: 'BU 1', value: 53.8, percentage: 53.8 },
                         { name: 'BU 2', value: 49.6, percentage: 49.6 },
                         { name: 'BU 3', value: 46.2, percentage: 46.2 },
                         { name: 'BU 4', value: 56.4, percentage: 56.4 },
-                        { name: 'BU 5', value: 38.7, percentage: 38.7 }
                     ],
                     presencia: [
                         { name: 'BU 1', value: 82.6, percentage: 82.6 },
                         { name: 'BU 2', value: 78.4, percentage: 78.4 },
                         { name: 'BU 3', value: 74.8, percentage: 74.8 },
                         { name: 'BU 4', value: 85.2, percentage: 85.2 },
-                        { name: 'BU 5', value: 61.5, percentage: 61.5 }
                     ]
                 },
 
@@ -3874,46 +3826,41 @@
                 // Proyecto Analysis - Marketing Campaigns
                 proyecto: {
                     tendencial: [
-                        { name: 'Campaña Dove "Belleza Real"', value: 76.8, percentage: 76.8 },
-                        { name: 'Lanzamiento Axe Black', value: 72.4, percentage: 72.4 },
-                        { name: 'Promo Knorr Verano', value: 68.9, percentage: 68.9 },
-                        { name: 'Rexona "Sin Límites"', value: 65.3, percentage: 65.3 },
-                        { name: 'Magnum Premium Launch', value: 61.7, percentage: 61.7 }
+                        { name: 'Proyecto 1', value: 76.8, percentage: 76.8 },
+                        { name: 'Proyecto 2', value: 72.4, percentage: 72.4 },
+                        { name: 'Proyecto 3', value: 68.9, percentage: 68.9 },
+                        { name: 'Proyecto 4', value: 65.3, percentage: 65.3 },
                     ],
                     posicion: [
-                        { name: 'Campaña Dove "Belleza Real"', value: 79.4, percentage: 79.4 },
-                        { name: 'Lanzamiento Axe Black', value: 74.8, percentage: 74.8 },
-                        { name: 'Promo Knorr Verano', value: 71.2, percentage: 71.2 },
-                        { name: 'Rexona "Sin Límites"', value: 67.9, percentage: 67.9 },
-                        { name: 'Magnum Premium Launch', value: 64.3, percentage: 64.3 }
+                        { name: 'Proyecto 1', value: 79.4, percentage: 79.4 },
+                        { name: 'Proyecto 2', value: 74.8, percentage: 74.8 },
+                        { name: 'Proyecto 3', value: 71.2, percentage: 71.2 },
+                        { name: 'Proyecto 4', value: 67.9, percentage: 67.9 },
                     ],
                     adyacencia: [
-                        { name: 'Campaña Dove "Belleza Real"', value: 53.6, percentage: 53.6 },
-                        { name: 'Lanzamiento Axe Black', value: 49.8, percentage: 49.8 },
-                        { name: 'Promo Knorr Verano', value: 46.7, percentage: 46.7 },
-                        { name: 'Rexona "Sin Límites"', value: 43.2, percentage: 43.2 },
-                        { name: 'Magnum Premium Launch', value: 39.8, percentage: 39.8 }
+                        { name: 'Proyecto 1', value: 53.6, percentage: 53.6 },
+                        { name: 'Proyecto 2', value: 49.8, percentage: 49.8 },
+                        { name: 'Proyecto 3', value: 46.7, percentage: 46.7 },
+                        { name: 'Proyecto 4', value: 43.2, percentage: 43.2 },
                     ],
                     cajillas: [
-                        { name: 'Campaña Dove "Belleza Real"', value: 71.3, percentage: 71.3 },
-                        { name: 'Lanzamiento Axe Black', value: 67.7, percentage: 67.7 },
-                        { name: 'Promo Knorr Verano', value: 64.1, percentage: 64.1 },
-                        { name: 'Rexona "Sin Límites"', value: 60.8, percentage: 60.8 },
-                        { name: 'Magnum Premium Launch', value: 57.4, percentage: 57.4 }
+                        { name: 'Proyecto 1', value: 71.3, percentage: 71.3 },
+                        { name: 'Proyecto 2', value: 67.7, percentage: 67.7 },
+                        { name: 'Proyecto 3', value: 64.1, percentage: 64.1 },
+                        { name: 'Proyecto 4', value: 60.8, percentage: 60.8 },
                     ],
                     adyacenciaBloque: [
-                        { name: 'Campaña Dove "Belleza Real"', value: 62.9, percentage: 62.9 },
-                        { name: 'Lanzamiento Axe Black', value: 58.6, percentage: 58.6 },
-                        { name: 'Promo Knorr Verano', value: 55.3, percentage: 55.3 },
-                        { name: 'Rexona "Sin Límites"', value: 51.7, percentage: 51.7 },
-                        { name: 'Magnum Premium Launch', value: 48.2, percentage: 48.2 }
+                        { name: 'Proyecto 1', value: 62.9, percentage: 62.9 },
+                        { name: 'Proyecto 2', value: 58.6, percentage: 58.6 },
+                        { name: 'Proyecto 3', value: 55.3, percentage: 55.3 },
+                        { name: 'Proyecto 4', value: 51.7, percentage: 51.7 },
                     ],
                     presencia: [
-                        { name: 'Campaña Dove "Belleza Real"', value: 85.7, percentage: 85.7 },
-                        { name: 'Lanzamiento Axe Black', value: 81.3, percentage: 81.3 },
-                        { name: 'Promo Knorr Verano', value: 78.6, percentage: 78.6 },
-                        { name: 'Rexona "Sin Límites"', value: 74.9, percentage: 74.9 },
-                        { name: 'Magnum Premium Launch', value: 71.2, percentage: 71.2 }
+                        { name: 'Proyecto 1', value: 85.7, percentage: 85.7 },
+                        { name: 'Proyecto 2', value: 81.3, percentage: 81.3 },
+                        { name: 'Proyecto 3', value: 78.6, percentage: 78.6 },
+                        { name: 'Proyecto 4', value: 74.9, percentage: 74.9 },
+                        { name: 'Proyecto 5', value: 71.2, percentage: 71.2 }
                     ]
                 }
             };
@@ -6114,71 +6061,6 @@
                 document.getElementById(selectedCategory + '-table').style.display = 'block';
             }
         }
-
-        // Placeholder functions for different chart views
-        // These can be implemented with specific data for each view type
-        function drawBUTendencialChart() { drawTendencialChart('bu'); }
-        function drawBUPosicionChart() { drawPosicionChart('bu'); }
-        function drawBUAdyacenciaChart() { drawAdyacenciaChart('bu'); }
-        function drawBUCajillasChart() { drawCajillasChart('bu'); }
-        function drawBUAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('bu'); }
-        function drawBUPresenciaChart() { drawPresenciaChart('bu'); }
-
-        function drawCategoriaTendencialChart() { drawTendencialChart('categoria'); }
-        function drawCategoriaPosicionChart() { drawPosicionChart('categoria'); }
-        function drawCategoriaAdyacenciaChart() { drawAdyacenciaChart('categoria'); }
-        function drawCategoriaCajillasChart() { drawCajillasChart('categoria'); }
-        function drawCategoriaAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('categoria'); }
-        function drawCategoriaPresenciaChart() { drawPresenciaChart('categoria'); }
-
-        function drawCadenaTendencialChart() { drawTendencialChart('cadena'); }
-        function drawCadenaPosicionChart() { drawPosicionChart('cadena'); }
-        function drawCadenaAdyacenciaChart() { drawAdyacenciaChart('cadena'); }
-        function drawCadenaCajillasChart() { drawCajillasChart('cadena'); }
-        function drawCadenaAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('cadena'); }
-        function drawCadenaPresenciaChart() { drawPresenciaChart('cadena'); }
-
-        function drawFormatoTendencialChart() { drawTendencialChart('formato'); }
-        function drawFormatoPosicionChart() { drawPosicionChart('formato'); }
-        function drawFormatoAdyacenciaChart() { drawAdyacenciaChart('formato'); }
-        function drawFormatoCajillasChart() { drawCajillasChart('formato'); }
-        function drawFormatoAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('formato'); }
-        function drawFormatoPresenciaChart() { drawPresenciaChart('formato'); }
-
-        function drawDivisionalTendencialChart() { drawTendencialChart('divisional'); }
-        function drawDivisionalPosicionChart() { drawPosicionChart('divisional'); }
-        function drawDivisionalAdyacenciaChart() { drawAdyacenciaChart('divisional'); }
-        function drawDivisionalCajillasChart() { drawCajillasChart('divisional'); }
-        function drawDivisionalAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('divisional'); }
-        function drawDivisionalPresenciaChart() { drawPresenciaChart('divisional'); }
-
-        function drawAsesorTendencialChart() { drawTendencialChart('asesor'); }
-        function drawAsesorPosicionChart() { drawPosicionChart('asesor'); }
-        function drawAsesorAdyacenciaChart() { drawAdyacenciaChart('asesor'); }
-        function drawAsesorCajillasChart() { drawCajillasChart('asesor'); }
-        function drawAsesorAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('asesor'); }
-        function drawAsesorPresenciaChart() { drawPresenciaChart('asesor'); }
-
-        function drawTiendaTendencialChart() { drawTendencialChart('tienda'); }
-        function drawTiendaPosicionChart() { drawPosicionChart('tienda'); }
-        function drawTiendaAdyacenciaChart() { drawAdyacenciaChart('tienda'); }
-        function drawTiendaCajillasChart() { drawCajillasChart('tienda'); }
-        function drawTiendaAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('tienda'); }
-        function drawTiendaPresenciaChart() { drawPresenciaChart('tienda'); }
-
-        function drawNumTiendaTendencialChart() { drawTendencialChart('num-tienda'); }
-        function drawNumTiendaPosicionChart() { drawPosicionChart('num-tienda'); }
-        function drawNumTiendaAdyacenciaChart() { drawAdyacenciaChart('num-tienda'); }
-        function drawNumTiendaCajillasChart() { drawCajillasChart('num-tienda'); }
-        function drawNumTiendaAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('num-tienda'); }
-        function drawNumTiendaPresenciaChart() { drawPresenciaChart('num-tienda'); }
-
-        function drawProyectoTendencialChart() { drawTendencialChart('proyecto'); }
-        function drawProyectoPosicionChart() { drawPosicionChart('proyecto'); }
-        function drawProyectoAdyacenciaChart() { drawAdyacenciaChart('proyecto'); }
-        function drawProyectoCajillasChart() { drawCajillasChart('proyecto'); }
-        function drawProyectoAdyacenciaBloqueChart() { drawAdyacenciaBloqueChart('proyecto'); }
-        function drawProyectoPresenciaChart() { drawPresenciaChart('proyecto'); }
 
         // Simple solution: Add a mutation observer to detect dropdown changes
         function setupSimpleChartUpdates() {
